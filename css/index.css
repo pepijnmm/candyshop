@@ -1,0 +1,134 @@
+/* Global Defaults */
+html, body {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+body {
+    font: 1em/1.25 Arial, Helvetica, sans-serif;
+}
+
+/* Headlines */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Text Styles */
+p, th, td, li, dd, dt, ul, ol, blockquote, q, acronym, abbr, a, input, select, textarea {
+    margin: 0;
+    padding: 0;
+    font: normal normal normal 1em/1.25 Arial, Helvetica, sans-serif;
+}
+blockquote {
+    margin: 1.25em;
+    padding: 1.25em
+}
+q {
+    font-style: italic;
+}
+acronym, abbr {
+    cursor: help;
+    border-bottom: 1px dashed;
+}
+small {
+    font-size:.85em;
+}
+big {
+    font-size:1.2em;
+}
+
+/* Links and Images */
+a, a:link, a:visited, a:active, a:hover {
+    text-decoration: underline;
+}
+img {
+    border: none;
+}
+
+/* Tables */
+table {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Forms */
+form {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+label {
+    cursor: pointer;
+}
+
+/* Common Classes */
+.clear { clear: both; }
+.floatLeft { float: left; }
+.floatRight { float: right; }
+.textLeft { text-align: left; }
+.textRight { text-align: right; }
+.textCenter { text-align: center; }
+.textJustify { text-align: justify; }
+.blockCenter { display: block; margin-left: auto; margin-right: auto; } /* remember to set width */
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.underline { text-decoration: underline; }
+.noindent { margin-left: 0; padding-left: 0; }
+.nomargin { margin: 0; }
+.nopadding { padding: 0; }
+.nobullet { list-style: none; list-style-image: none; }
+* {
+    margin: 0;
+    padding: 0;
+}
+header{
+    background:red;
+    width: 100%;
+    height: 13%;
+    position:fixed;
+    top:0;
+    background:red;
+    z-index:5;
+    font-size:15px;
+}
+header #searchboxinput[type=submit]{
+    background:rgba(255,255,255,0.5);
+}
+header #searchbox input[type=text]{
+    background:rgba(255,255,255,0.5);
+}
+header #leftbuttons{
+    margin-top:5px;
+}
+header #leftbuttons a:nth-child(1){
+    display:block;
+    float:left;
+    width: 50%;
+}
+header #leftbuttons a:nth-child(2){
+    display:block;
+    float:left;
+    width: 30%;
+}
+nav{
+    background:blue;
+    height:50%;
+    width:100%;
+    position: absolute;
+    bottom: 0;
+}
+.headerbutton{
+    border:1px solid black;
+    background: orange;
+    text-align: center;
+    padding:5px;
+}
+#rightbuttons{
+    font-size:25px;
+    text-align:right;
+    text-decoration: none;
+}
