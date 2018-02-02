@@ -68,6 +68,10 @@ button{
     margin:0;
 }
 
+hr {
+    margin: 0px;
+}
+
 /* Common Classes */
 .clear { clear: both; }
 .floatLeft { float: left; }

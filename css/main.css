@@ -93,3 +93,31 @@ nav menu{
 footer menuitem{
     display:table;
 }
+
+/*about page*/
+
+h5 {
+    font-size: 15px;
+}
+
+h6 {
+    color: grey;
+    font-style: italic;
+}
+
+.container1 {
+    padding: 10px;
+    margin: 10px;
+}
+.container2 {
+    padding: 10px;
+    margin: 10px;
+}
+.container3 {
+    padding: 10px;
+    margin: 10px;
+}
+.container4 {
+    padding: 10px;
+    margin: 10px;
+}

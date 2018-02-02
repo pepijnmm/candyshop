@@ -25,9 +25,9 @@
                 </form>
             </div>
             <menu id="leftbuttons" class="five columns">
-                <menuitem><a href="">Home</a></menuitem>
-                <menuitem><a href="">About</a></menuitem>
-                <menuitem><a href="">Blog</a></menuitem>
+                <menuitem><a href="?page=home">Home</a></menuitem>
+                <menuitem><a href="?page=about">About</a></menuitem>
+                <menuitem><a href="?page=blog">Blog</a></menuitem>
             </menu>
             <div id="rightbuttons" class="two columns">
                 <a href=""><i class="fas fa-user"></i></a>
