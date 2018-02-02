@@ -1,7 +1,9 @@
-
-a{color:black;}
+/* main page */
+a{
+    color:black;
+}
 main{
-    height:200px;
+    min-height:100px;
 }
 header{
     width: 100%;
@@ -75,7 +77,10 @@ header menuitem{
 }
 nav menu{
     background: #8080806b;
-    display: contents;
+    display: inline-block;
+}
+nav menu{
+
 }
 .headerbutton{
     text-align: center;
@@ -92,6 +97,51 @@ nav menu{
 }
 footer menuitem{
     display:table;
+}
+
+
+/* product pagina */
+#product menu menuitem{
+    display:block;
+}
+#product #oneproduct{
+    border-left:1px solid black;
+}
+.sub1{
+    margin-left: 20px;
+}
+.sub2{
+    margin-left: 40px;
+}
+.sub3{
+    margin-left: 60px;
+}
+.sub4{
+    margin-left: 80px;
+}
+.sub5{
+    margin-left: 100px;
+}
+#oneproduct  #productinfo #leftinfo,#oneproduct  #productinfo #rightinfo{
+    width:50%;
+    float:left;
+}
+#oneproduct  #productinfo #aantalproducten{
+    height: 12px;
+    width: 40px;
+}
+#oneproduct img{
+    width:100%;
+}
+#oneproduct hr{
+    margin: 0 0 5px 0;
+}
+#buybutton{
+    float: right;
+    margin-right: 10px;
+}
+#productbeschrijving{
+    margin:10px 0;
 }
 
 /*about page*/
