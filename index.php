@@ -14,7 +14,7 @@
     <div class="twelf columns">
         <div id="topheader">
             <div id="logo" class="one column">
-                <a href=""><img src="images/YSS.jpg" alt="Logo" height="30px" width="auto"></a>
+                <a href=""><img src="images/YSS.jpg" alt="Logo" height="50px" width="auto"></a>
             </div>
             <div id="searchbox" class="four columns">
                 <form>
