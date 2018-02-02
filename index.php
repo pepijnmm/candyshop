@@ -24,11 +24,11 @@
                             </button>
                         </form>
                     </div>
-                    <div id="leftbuttons" class="five columns">
-                        <a href="" class="headerbutton">Home</a>
-                        <a href="" class="headerbutton">About</a>
-                        <a href="" class="headerbutton">Blog</a>
-                    </div>
+                    <menu id="leftbuttons" class="five columns">
+                        <menuitem><a href="">Home</a></menuitem>
+                        <menuitem><a href="">About</a></menuitem>
+                        <menuitem><a href="">Blog</a></menuitem>
+                    </menu>
                     <div id="rightbuttons" class="two columns">
                         <a href=""><i class="fas fa-user"></i></a>
                         <a href=""><i class="fas fa-shopping-cart"></i></a>

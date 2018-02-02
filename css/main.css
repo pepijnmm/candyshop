@@ -56,6 +56,15 @@ footer{
     width: 100%;
     display: table;
 }
+header menu menuitem:not(:first-child) a{
+    border-left:1px solid black;
+    margin-left:10px;
+    padding-left:10px;
+}
+header menu{
+    background: #8080806b;
+    display: contents;
+}
 nav menu menuitem:not(:first-child) a{
     border-left:1px solid black;
     margin-left:10px;
@@ -63,7 +72,7 @@ nav menu menuitem:not(:first-child) a{
 }
 nav menu{
     background: #8080806b;
-    display: inline-block;
+    display: contents;
 }
 .headerbutton{
     text-align: center;
