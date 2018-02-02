@@ -46,12 +46,10 @@
     <div class="two columns">&nbsp;</div>
     <div class="eight columns">
         <main id="body" class="row">
-            <div class="eleven columns">
                 <?php
                 if(!empty($_GET["page"])&&file_exists($_GET["page"].".php")){
                     require_once $_GET["page"].".php";
                 } ?>
-            </div>
         </main>
     </div>
     <div class="two columns">&nbsp;</div>
