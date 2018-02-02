@@ -75,7 +75,10 @@ header menuitem{
 }
 nav menu{
     background: #8080806b;
-    display: contents;
+    display: inline-block;
+}
+nav menu{
+
 }
 .headerbutton{
     text-align: center;
