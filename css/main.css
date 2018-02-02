@@ -65,10 +65,13 @@ header menu{
     background: #8080806b;
     display: contents;
 }
-nav menu menuitem:not(:first-child) a{
+header menu menuitem:not(:first-child) a{
     border-left:1px solid black;
     margin-left:10px;
     padding-left:10px;
+}
+header menuitem{
+    display:inline-block;
 }
 nav menu{
     background: #8080806b;
