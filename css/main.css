@@ -48,6 +48,7 @@ nav, #topheader{
     width: 100%;
 }
 nav{
+    text-align: center;
     background:repeating-linear-gradient( to right, #F7DB19, #F7DB19 20px, #DB152D 0px, #DB152D 40px );
 }
 footer{
@@ -61,7 +62,8 @@ nav menu menuitem:not(:first-child) a{
     padding-left:10px;
 }
 nav menu{
-    text-align: center;
+    background: #8080806b;
+    display: inline-block;
 }
 .headerbutton{
     text-align: center;
