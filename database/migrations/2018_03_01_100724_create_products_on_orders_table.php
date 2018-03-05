@@ -16,6 +16,7 @@ class CreateProductsOnOrdersTable extends Migration
         Schema::create('products_on_orders', function (Blueprint $table) {
             $table->integer('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->integer('amount');
         });
     }
 

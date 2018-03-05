@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Product extends Model
 {
 	protected $table = 'products';
     /**
@@ -25,6 +25,6 @@ class Products extends Model
     ];
 	public function Categories()
     {
-        return $this->belongsToMany('App\Categories');
+        return $this->belongsToMany('App\Categorie');
     }
 }

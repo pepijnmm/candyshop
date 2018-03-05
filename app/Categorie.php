@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Categorie extends Model
 {
 	protected $table = 'categories';
     /**
@@ -25,14 +25,14 @@ class Categories extends Model
     ];
 	public function childeren()
     {
-        return $this->hasMany('App\Categories');
+        return $this->hasMany('App\Categorie');
     }
 	public function parent()
     {
-        return $this->belongsTo('App\Categories');
+        return $this->belongsTo('App\Categorie');
     }
 	public function products()
     {
-        return $this->belongsToMany('App\Products');
+        return $this->belongsToMany('App\Product');
     }
 }

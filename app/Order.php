@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Addresses extends Model
+class Order extends Model
 {
-	protected $table = 'addresses';
+	protected $table = 'orders';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'streetname', 'housenumber', 'postcode','telephonenumber',
+        'user_id', 'status','trackcode','totalprice','adres_id'
     ];
 
     /**
@@ -26,5 +26,13 @@ class Addresses extends Model
 	public function user()
     {
         return $this->belongsTo('App\User');
+    }
+	public function address()
+    {
+        return $this->belongsTo('App\Address');
+    }
+	public function products()
+    {
+        return $this->belongsToMany('App\Product');
     }
 }
