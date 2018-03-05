@@ -1,0 +1,21 @@
+eerste keer laravel instellen
+1 installeer composer
+2 doe in de map waar laravel zit composer install (in cmd)
+3 kopier de .env.example en rename hem naar .env
+4 zet de database in de .env file(en maak een database aan)
+5 doe de gebruikersnaam van de database erin
+6 daarna ga naar document AppServiceProvider.php
+voeg toe: use Illuminate\Support\Facades\Schema;
+en bij boot functie: Schema::defaultStringLength(191);
+7 doe nu in cmd: php artisan key:generate
+8 voor vhost in te stellen zie voorbeeld hier benede:(bestand http-vhost.conf )
+<VirtualHost *:80>
+	<Directory "C:\Users\Vento i7\Documents\candyshop\public">
+	   Require all granted
+	   AllowOverride all
+	</Directory>
+    DocumentRoot "C:\Users\Vento i7\Documents\candyshop\public"
+    ServerName candy.nl
+</VirtualHost>
+9 voorbeeld voor hosts bestand te wijzigen(system32/drivers/etc)
+127.0.0.1       candy.nl
