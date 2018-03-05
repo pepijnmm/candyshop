@@ -1,0 +1,173 @@
+/* main page */
+a{
+    color:black;
+}
+main{
+    min-height:100px;
+}
+header{
+    width: 100%;
+    position:fixed;
+    top:0;
+    z-index:5;
+    font-size:15px;
+    margin-top:5px;
+}
+header a{
+    text-decoration: none;
+    font-size:20px;
+    font-weight: 600;
+}
+header a:hover{
+    color: #FA8C12;
+    text-decoration: underline;
+}
+header #searchbox input[type=text]{
+    background:rgba(255,255,255,0.5);
+    height: 30px;
+    font-size: 15px;
+    width: 200px;
+}
+header #searchId{
+    background:rgba(255,255,255,0.5);
+    height: 30px;
+    font-size: 15px;
+    width: 38px;
+    padding: 0 8px;
+}
+header #leftbuttons a:nth-child(1){
+    display:block;
+    float:left;
+    width: 50%;
+}
+header #leftbuttons a:nth-child(2){
+    display:table;
+    float:left;
+    width: 20%;
+}
+nav, #topheader{
+    display:inline-block;
+    width: 100%;
+}
+nav{
+    text-align: center;
+    background:repeating-linear-gradient( to right, #F7DB19, #F7DB19 20px, #DB152D 0px, #DB152D 40px );
+}
+footer{
+    background:repeating-linear-gradient( to right, #FA8C12, #FA8C12 20px, #DB152D 0px, #DB152D 40px );
+    width: 100%;
+    display: table;
+}
+header menu menuitem:not(:first-child) a{
+    border-left:1px solid black;
+    margin-left:10px;
+    padding-left:10px;
+}
+header menu{
+    background: #8080806b;
+    display: contents;
+}
+header menu menuitem:not(:first-child) a{
+    border-left:1px solid black;
+    margin-left:10px;
+    padding-left:10px;
+}
+header menuitem{
+    display:inline-block;
+}
+nav menu{
+    background: #8080806b;
+    display: inline-block;
+}
+nav menu{
+
+}
+.headerbutton{
+    text-align: center;
+    padding:5px;
+}
+#rightbuttons{
+    font-size:25px;
+    text-align:right;
+    text-decoration: none;
+    padding-right: 20px;
+}
+#copyright{
+    text-align: center;
+}
+footer menuitem{
+    display:table;
+}
+
+
+/* product pagina */
+#product menu menuitem{
+    display:block;
+}
+#product #oneproduct{
+    border-left:1px solid black;
+}
+.sub1{
+    margin-left: 20px;
+}
+.sub2{
+    margin-left: 40px;
+}
+.sub3{
+    margin-left: 60px;
+}
+.sub4{
+    margin-left: 80px;
+}
+.sub5{
+    margin-left: 100px;
+}
+#oneproduct  #productinfo #leftinfo,#oneproduct  #productinfo #rightinfo{
+    width:50%;
+    float:left;
+}
+#oneproduct  #productinfo #aantalproducten{
+    height: 12px;
+    width: 40px;
+}
+#oneproduct img{
+    width:100%;
+}
+#oneproduct hr{
+    margin: 0 0 5px 0;
+}
+#buybutton{
+    float: right;
+    margin-right: 10px;
+}
+#productbeschrijving{
+    margin:10px 0;
+}
+
+/*about page*/
+
+h5 {
+    font-size: 15px;
+}
+
+h6 {
+    color: grey;
+    font-style: italic;
+}
+
+.container1 {
+    padding: 10px;
+    margin: 10px;
+}
+.container2 {
+    padding: 10px;
+    margin: 10px;
+}
+.container3 {
+    padding: 10px;
+    margin: 10px;
+}
+.container4 {
+    padding: 10px;
+    margin: 10px;
+}

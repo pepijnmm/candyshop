@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->double('price', 5, 2);
             $table->string('name', 100);
             $table->string('description', 500);
@@ -23,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('storage');
             $table->integer('discount')->nullable($value = true);
             $table->string('image_location');
+            $table->timestamps();
         });
     }
 
