@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('description', 500);
             $table->integer('weight');
             $table->integer('storage');
-            $table->integer('discount')->nullable($value = true);
+            $table->integer('discount')->nullable(true);
             $table->string('image_location');
             $table->timestamps();
         });

@@ -16,9 +16,10 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('street_name');
-            $table->string('house_number');
-            $table->string('zip_code');
+            $table->string('streetname',6);
+            $table->integer('housenumber');
+            $table->string('postcode',6);
+            $table->string('telephonenumber',11);
             $table->timestamps();
         });
     }
