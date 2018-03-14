@@ -2,12 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends EloquentUserProvider
+class User extends Model
 {
-    use Notifiable;
 	protected $table = 'users';
     /**
      * The attributes that are mass assignable.
@@ -15,7 +13,7 @@ class User extends EloquentUserProvider
      * @var array
      */
     protected $fillable = [
-        'first_name', 'second_name', 'email', 'phone_number', 'password',
+        'name', 'email', 'phone_number', 'password',
     ];
 
     /**
@@ -26,4 +24,12 @@ class User extends EloquentUserProvider
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function Address()
+    {
+        return $this->hasOne('App\Address');
+    }
+    public function Orders()
+    {
+        return $this->hasMany('App\Orders');
+    }
 }

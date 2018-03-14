@@ -14,15 +14,9 @@
 $factory->define(App\Order::class, function () {
     return [
         'user_id' => function () {
-            return App\Product::all()->get(random_int()) ;
+            return random_int(1, 10) ;
         },
-        'total_price' => function () {
-            $returnValue = 0.0;
-            //foreach (factory(App\Product::class, 10)->create()->price as $value){
-            //    $returnValue = $returnValue . $value;
-            //}
-            return $returnValue;
-        },
+        'total_price' => random_int(9, 99),
         'track_code' => random_int(1000000, 99999999),
     ];
 });
