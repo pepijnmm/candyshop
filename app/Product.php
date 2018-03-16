@@ -12,8 +12,17 @@ class Product extends Model
      *
      * @var array
      */
+        public $rules = [
+        'name' => 'required||unique:posts|max:100',
+        'price' => 'required|max:30|regex:/^[0-9]{3}+\.?[0-9]{2}$/',
+        'description' => 'required|max:500',
+        'stock' => 'required',
+        'weight' => 'required',
+        'image_location' => 'required',
+        'discount' => '',
+    ];
     protected $fillable = [
-        'name', 'price','description','stock','weight','amount_a_time','picture','discount',
+        'name', 'price','description','stock','weight','image_location','discount',
     ];
 
     /**
