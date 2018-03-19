@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('status', ['active', 'paid', 'send', 'received']);
             $table->double('total_price');
             $table->string('track_code')->nullable();
             $table->timestamps();
