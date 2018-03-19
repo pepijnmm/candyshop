@@ -1,11 +1,11 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/skeleton.css">
-    <link rel="stylesheet" type="text/css" href="css/removeDefaultBrowser.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="javascript/jquery.min.js"></script>
-    <script src="javascript/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="/css/removeDefaultBrowser.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/main.js"></script>
     <title>Ye sweet shoppe</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
     <div class="twelf columns">
         <div id="topheader">
             <div id="logo" class="one column">
-                <a href=""><img src="images/YSS.jpg" alt="Logo" height="50px" width="auto"></a>
+                <a href="/"><img src="/images/YSS.jpg" alt="Logo" height="50px" width="auto"></a>
             </div>
             <div id="searchbox" class="four columns">
                 <form>
@@ -30,7 +30,10 @@
                 <menuitem><a href="?page=blog">Blog</a></menuitem>
             </menu>
             <div id="rightbuttons" class="two columns">
-                <a href=""><i class="fas fa-user"></i></a>
+                <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-user"></i></a>
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                 <a href=""><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
@@ -46,6 +49,27 @@
     <div class="two columns">&nbsp;</div>
     <div class="eight columns">
         <main id="body" class="row">
+		@if(!empty(Session::get('alert-success')))
+			<div class="alert alert-success">{{Session::pull('alert-success')}}</div>
+		@endif
+		@if(!empty(Session::get('alert-info')))
+			<div class="alert alert-info">{{Session::pull('alert-info')}}</div>
+		@endif
+		@if(!empty(Session::get('alert-warning')))
+			<div class="alert alert-warning">{{Session::pull('alert-warning')}}</div>
+		@endif
+		@if(!empty(Session::get('alert-error')))
+			<div class="alert alert-error">{{Session::pull('alert-error')}}</div>
+		@endif
+		@if ($errors->any())
+			<div class="alert alert-error">Errors:
+			<ul>
+				@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+			</div>
+		@endif
                 @yield('content')
         </main>
     </div>

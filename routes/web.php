@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 
 Auth::routes();
-Route::resource('products','ProductsController');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'WebshopController@index');
+Route::resource('products','ProductController',['only'=>['show']]);
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'GuestCheck'], function () {
+	
+	Route::group(['middleware' => 'AdminCheck'], function () {
+			Route::resource('products','ProductController',['except'=>['show']]);
+	});
+});

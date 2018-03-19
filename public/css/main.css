@@ -11,7 +11,8 @@ header{
     top:0;
     z-index:5;
     font-size:15px;
-    margin-top:5px;
+    padding-top:5px;
+	background-color:white;
 }
 header a{
     text-decoration: none;
@@ -132,6 +133,7 @@ footer menuitem{
 }
 #oneproduct img{
     width:100%;
+    max-height: 250px;
 }
 #oneproduct hr{
     margin: 0 0 5px 0;
