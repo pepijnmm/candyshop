@@ -17,7 +17,7 @@
 
 
 Auth::routes();
-Route::get('/', 'WebshopController@index');
+Route::get('/', 'PublicController@index');
 Route::resource('products','ProductController',['only'=>['show']]);
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'GuestCheck'], function () {

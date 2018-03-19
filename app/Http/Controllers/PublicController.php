@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 
-class WebshopController extends Controller
+class PublicController extends Controller
 {
     public function index(){
         $products = Product::all();

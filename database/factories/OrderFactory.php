@@ -18,6 +18,7 @@ $factory->define(App\Order::class, function () {
         },
         'status' => array_random(['active', 'paid', 'send', 'received']),
         'total_price' => random_int(9, 99),
+        'address_id' => random_int(9, 99),
         'track_code' => random_int(1000000, 99999999),
     ];
 });

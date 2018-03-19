@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="nine columns" id="oneproduct">
-    
+    {{Session::getId()}}
     
 	@foreach ($products as $product)
 	<a href="{{ action('ProductController@show',$product->id)   }}" class="row">

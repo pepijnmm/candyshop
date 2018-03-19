@@ -14,8 +14,8 @@ class UserEdit extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('first_name');
-            $table->string('second_name');
+            $table->string('first_name',30);
+            $table->string('second_name',30);
         });
     }
 

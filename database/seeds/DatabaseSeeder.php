@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         for ($x = 1; $x <= random_int(1, 10); $x++) {
             for ($y = 1; $y <= random_int($x + 1, 10); $y++) {
-                DB::table('products_on_orders')->insert(
+                DB::table('product_on_order')->insert(
                     [
                         'order_id' => $x,
                         'product_id' => $y,
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         for ($x = 1; $x <= random_int(1, 10); $x++) {
             for ($y = 1; $y <= random_int($x + 1, 10); $y++) {
-                DB::table('products_on_categories')->insert(
+                DB::table('product_on_category')->insert(
                     [
                         'category_id' => $x,
                         'product_id' => $y,

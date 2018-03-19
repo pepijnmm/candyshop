@@ -13,11 +13,9 @@ class AccountsAddmins extends Migration
      */
     public function up()
     {
-		if (Schema::hasTable('users')) {
-			Schema::table('users', function (Blueprint $table) {
-				$table->integer('role')->default(0);
-			});
-		}
+		Schema::table('users', function (Blueprint $table) {
+			$table->integer('role')->default(0);
+		});
     }
 
     /**
@@ -27,10 +25,8 @@ class AccountsAddmins extends Migration
      */
     public function down()
     {
-        		if (Schema::hasTable('users')) {
-			Schema::table('users', function (Blueprint $table) {
-				$table->dropColumn(['role']);
-			});
-		}
+		Schema::table('users', function (Blueprint $table) {
+			$table->dropColumn(['role']);
+		});
     }
 }
