@@ -13,7 +13,7 @@ class CreateProductsOnOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_on_orders', function (Blueprint $table) {
+        Schema::create('product_on_order', function (Blueprint $table) {
             $table->integer('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('amount');
@@ -27,6 +27,6 @@ class CreateProductsOnOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_on_orders');
+        Schema::dropIfExists('product_on_order');
     }
 }

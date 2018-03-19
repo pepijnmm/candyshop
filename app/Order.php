@@ -23,16 +23,16 @@ class Order extends Model
      */
     protected $hidden = [
     ];
-	public function User()
+	public function user()
     {
         return $this->belongsTo('App\User');
     }
-	public function Address()
+	public function address()
     {
-        return $this->hasOne('App\Address');
+        return $this->belongsTo('App\Addresses');
     }
-	public function Products()
+	public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->belongsToMany('App\Products');
     }
 }

@@ -23,16 +23,16 @@ class Category extends Model
      */
     protected $hidden = [
     ];
-	public function Children()
+	public function childeren()
     {
-        return $this->hasMany('App\Category');
+        return $this->hasMany('App\Categories');
     }
-	public function Parent()
+	public function parent()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Categories');
     }
-	public function Products()
+	public function products()
     {
-        return $this->hasMany('App\Product');
+        return $this->belongsToMany('App\Products');
     }
 }
