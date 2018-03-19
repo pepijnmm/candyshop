@@ -31,11 +31,7 @@
 					<div id="rightinfo">
 						<p>{{$product->weight}}</p>
 						<p>€{{$product->price}}</p>
-						<select id="aantalproducten">
-						@for ($i = 1; $i <= $product->storage; $i++)
-							<option>{{$i}}</option>
-						@endfor
-						</select>
+						<input type="number" id="aantalproducten" min="0" max="{{$product->storage}}" value="{{old('aantalproducten')}}">
 					</div>
 					<button type="submit" id="buybutton" class="btn btn-success">Kopen</button>
 				</form>

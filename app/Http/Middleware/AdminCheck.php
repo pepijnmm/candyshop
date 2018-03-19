@@ -14,16 +14,17 @@ class AdminCheck
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
 	{
-		if(Auth::user()->role == 1){
-			return $next($request);
-		}else{
+		if(Auth::guard($guard)->guest() || !Auth::user()->role == 1){
 			if ($request->ajax() || $request->wantsJson()) {
-					return response('Unauthorized.', 401);
-				} else {
-					return redirect('/');
-				}
+				return response('Unauthorized.', 401);
+			} else {
+				return redirect('/');
+			}
+		}
+		else{
+				return $next($request);
 		}
     }
 }
