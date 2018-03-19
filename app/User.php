@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
 	protected $table = 'users';
     /**
@@ -13,7 +13,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone_number', 'password',
+        'name', 'email', 'phone_number', 'password','role',
     ];
 
     /**
