@@ -24,5 +24,9 @@ Route::group(['middleware' => 'GuestCheck'], function () {
 
 });
 Route::group(['middleware' => 'AdminCheck'], function () {
-		Route::resource('products','ProductController',['except'=>['show']]);
+	Route::resource('products','ProductController',['except'=>['show']]);
 });
+
+//Orders
+Route::get('/cart', 'OrderController@cart')->name('cart');
+Route::resource('orders','OrderController',['only'=>['index', 'show']]);
