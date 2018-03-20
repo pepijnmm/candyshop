@@ -32,9 +32,11 @@
             <div id="rightbuttons" class="two columns">
                 <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-user"></i></a>
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                <a href=""><i class="fas fa-shopping-cart"></i></a>
+                    {{ csrf_field() }}
+                </form>
+                <a href="{{ action('OrderController@cart') }}">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
             </div>
         </div>
         <nav>

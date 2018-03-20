@@ -21,8 +21,11 @@ Route::get('/', 'PublicController@index');
 Route::resource('products','ProductController',['only'=>['show']]);
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'GuestCheck'], function () {
-	
-	Route::group(['middleware' => 'AdminCheck'], function () {
-			Route::resource('products','ProductController',['except'=>['show']]);
-	});
+    Route::group(['middleware' => 'AdminCheck'], function () {
+        Route::resource('products','ProductController',['except'=>['show']]);
+    });
 });
+
+//Orders
+Route::get('/cart', 'OrderController@cart')->name('cart');
+Route::resource('orders','OrderController',['only'=>['index', 'show']]);
