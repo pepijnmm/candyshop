@@ -11,4 +11,7 @@ class PublicController extends Controller
         $products = Product::all();
         return view('index',['products' =>$products]);
     }
+        public function about(){
+        return view('about');
+    }
 }
