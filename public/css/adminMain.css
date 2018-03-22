@@ -1,0 +1,41 @@
+menu{
+	font-size: 17px;
+    font-weight: 600;
+}
+#firstmenu{
+	background: lightgray;
+    margin: 0;
+    height: 100vw;
+    padding: 0;
+}
+#firstmenu > menuitem{
+	display:block;
+	border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: black;
+    background: #bebdbd;
+}
+#firstmenu menuitem menu{
+	padding: 0;
+	margin:0;
+}
+#firstmenu menuitem menu menuitem{
+	display: block;
+	padding: 0 0 0 10px;
+	border-width: 2px 0 0 0;
+    border-style: solid;
+	border-color: #898080;
+	cursor: pointer;
+}
+#firstmenu menuitem menu menuitem a{
+	text-decoration: none;
+    font-size: 18px;
+}
+#firstmenu menuitem menu menuitem a:hover{
+	font-weight: 600;
+	color: #4f4e87;
+}
+#firstmenu menuitem menu menuitem::before {
+  content: "• ";
+  color: black;
+}

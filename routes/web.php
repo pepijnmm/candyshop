@@ -17,18 +17,23 @@
 
 
 Auth::routes();
+
+Route::post('fileUpload','ExtraController@fileUpload');
 Route::get('/', 'PublicController@index');
-Route::get('/about', 'PublicController@about');
-Route::resource('/products','ProductController',['only'=>['show']]);
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('about', 'PublicController@about');
+
+Route::resource('artikelen','ProductController',['only'=>['show']]);
 Route::group(['middleware' => 'GuestCheck'], function () {
 
 });
 Route::group(['middleware' => 'AdminCheck'], function () {
-	Route::resource('/products','ProductController',['except'=>['show']]);
-	Route::get('/admin', 'PanelController@adminpanel');
+	Route::resource('admin/artikelen','ProductController');
+	Route::get('admin', function () {
+
+		return redirect()->action('ProductController@index');
+	});
 });
 
 //Orders
-Route::get('/cart', 'OrderController@cart')->name('cart');
-Route::resource('/orders','OrderController',['only'=>['index', 'show']]);
+Route::get('cart', 'OrderController@cart')->name('cart');
+Route::resource('orders','OrderController',['only'=>['index', 'show']]);

@@ -12,6 +12,10 @@ use Session;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('AdminCheck', ['except' => ['show']]);
+    }
     public function index(){
         $products = Product::all();
         return view('product.index',['products' =>$products]);

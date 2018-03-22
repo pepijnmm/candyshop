@@ -47,7 +47,7 @@
                                 {{ csrf_field() }}
                             </form>
                             @if(Auth::user()->role == 1)
-                                <li><a href="{{action('PanelController@adminpanel')}}" >adminpanel</a></li>
+                                <li><a href="/admin" >adminpanel</a></li>
                             @endif
                         </ul>
                     </div>

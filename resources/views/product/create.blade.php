@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('content')
 <form action="{{ action('ProductController@store')   }}" method="POST">
@@ -11,6 +11,7 @@
 		</div>
 		<div class="six columns">
 		  <label for="image_location">Plaatje</label>
+		  {!! Form::file('image', array('class' => 'image')) !!}
 		  <input required class="u-full-width" name="image_location" type="text" value="{{old('image_location')}}">
 		</div>
 	</div>

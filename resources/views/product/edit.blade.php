@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('content')
 <form action="{{ action('ProductController@update',$product->id)   }}" method="POST">

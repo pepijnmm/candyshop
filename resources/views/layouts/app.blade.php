@@ -13,54 +13,106 @@
     <link rel="stylesheet" type="text/css" href="/css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="/css/removeDefaultBrowser.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/adminMain.css">
     <script src="/javascript/jquery.min.js"></script>
     <script src="/javascript/main.js"></script>
     <!-- Styles -->
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
+<body id="adminpanel">
+<div id="empty"></div>
+<header class="row">
+    <nav class="twelf columns">
+        <div id="topheader">
+            <div class="ten columns">
+                <br/>
+            </div>
+            <div id="rightbuttons" class="two columns">
+                <div id="userhover">
+                @if(Auth::guest()) 
+                <a href="{{ route('login') }}">
+                @endif
+                    <i class="fas fa-user" ></i>
+                    @if (Auth::guest())
+                    </a>
+                    @else
+                    <div id="usermenu">
+                        <ul>
+                            <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </ul>
+                    </div>
+                    @endif
                 </div>
             </div>
-        </nav>
-
-        @yield('content')
+        </div>
+    </nav>
+</header>
+<div class="row" id="main">
+    <div class="four columns">
+        <menu id="firstmenu">
+            <menuitem class="parentmenuitem">
+                Artikel
+                <menu class="childmenu">
+                    <menuitem  onclick="">
+                    <a href="{{action('ProductController@index')}}">Index</a>
+                    </menuitem>
+                    <menuitem  onclick="">
+                    <a href="{{action('ProductController@create')}}">Nieuwe artikel</a>
+                    </menuitem>
+                </menu>
+            </menuitem>
+            <menuitem class="parentmenuitem">
+                Categorie
+                <menu class="childmenu">
+                    <menuitem  onclick="">
+                    <a href="">Index</a>
+                    </menuitem>
+                    <menuitem  onclick="">
+                    <a href="">Nieuwe categorie</a>
+                    </menuitem>
+                </menu>
+            </menuitem>
+            <menuitem class="parentmenuitem">
+                Gebruikers
+                <menu class="childmenu">
+                    <menuitem  onclick="">
+                    <a href="">Index</a>
+                    </menuitem>
+                    <menuitem  onclick="">
+                    <a href="">Nieuwe gebruiker</a>
+                    </menuitem>
+                </menu>
+            </menuitem>
+        </menu>
     </div>
+    <div class="seven columns">
+        <main id="body" class="row">
+        @if(!empty(Session::get('alert-success')))
+            <div class="alert alert-success">{{Session::pull('alert-success')}}</div>
+        @endif
+        @if(!empty(Session::get('alert-info')))
+            <div class="alert alert-info">{{Session::pull('alert-info')}}</div>
+        @endif
+        @if(!empty(Session::get('alert-warning')))
+            <div class="alert alert-warning">{{Session::pull('alert-warning')}}</div>
+        @endif
+        @if(!empty(Session::get('alert-error')))
+            <div class="alert alert-error">{{Session::pull('alert-error')}}</div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-error">Errors:
+            <ul>
+                @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            </div>
+        @endif
+                @yield('content')
+        </main>
+    </div>
+</div>
 </body>
 </html>

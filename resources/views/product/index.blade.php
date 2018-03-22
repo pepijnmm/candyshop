@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('content')
 <table>
@@ -17,9 +17,5 @@
   </tr>
   @endforeach
  </table>
- <form action="{{ action('ProductController@create')   }}" method="GET">
-            {{ method_field('GET') }}
-            {{ csrf_field() }}
-			<input class="button-primary" type="submit" value="Toevoegen">
-</form>
+			<input class="button-primary" type="button" value="Toevoegen" onclick="location.href='{{ action('ProductController@create')   }}'">
 @endsection
