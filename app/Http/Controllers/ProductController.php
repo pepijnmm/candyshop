@@ -24,12 +24,25 @@ class ProductController extends Controller
         return view('product.create');
     }
     public function store(Request $request){
+        $pictureupload = false;
+        if(!empty($request->image)){
+            $pictureupload = true;
+            $request->merge(["image_location" => "/"]);
+        }
         $product = New Product;
-        $validator = Validator::make($request->all(), $product->rules);
+        $validator = Validator::make($request->except('image'), $product->rules);
         if ($validator->fails()) {
             return redirect()->action('ProductController@create')->withInput()->withErrors($validator);
         }
-        Product::create($request->all());
+        if($pictureupload){
+            $ExtraController = new ExtraController;
+            $request->merge(["image_location" => $ExtraController->fileUpload($request)]);
+        }
+        $validator = Validator::make($request->except('image'), $product->rules);
+        if ($validator->fails()) {
+            return redirect()->action('ProductController@create')->withInput()->withErrors($validator);
+        }
+        Product::create($request->except('image'));
         Session::flash('alert-success', 'product toegevoegd');
         return redirect()->action('ProductController@create');
     }
@@ -54,9 +67,9 @@ class ProductController extends Controller
         if ($product) {
             $validator = Validator::make($request->all(), $product->rules);
             if ($validator->fails()) {
-                return redirect()->action('ProductController@edit')->withInput()->withErrors($validator);
+                return redirect()->action('ProductController@edit', $id)->withInput()->withErrors($validator);
             }
-            $$product->update($request->all());
+            $product->update($request->all());
             Session::flash('alert-success', 'product geupdate');
             return redirect()->action('ProductController@show', $id);
         }

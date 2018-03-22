@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="six columns">
 		  <label for="price">Prijs</label>
-		  <input required class="u-full-width" name="price" type="text" onchange="this.value = this.value.replace(/,/g, '.')" value="{{(empty(old('price')))?$product->image_location:old('price')}}">
+		  <input required class="u-full-width" name="price" type="text" onchange="this.value = this.value.replace(/,/g, '.')" value="{{(empty(old('price')))?$product->price:old('price')}}">
 		</div>
 		<div class="six columns">
 		  <label for="weight">Gewicht</label>
