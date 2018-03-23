@@ -27,15 +27,22 @@ menu{
 	border-color: #898080;
 	cursor: pointer;
 }
-#firstmenu menuitem menu menuitem a{
+#firstmenu a{
 	text-decoration: none;
     font-size: 18px;
 }
-#firstmenu menuitem menu menuitem a:hover{
+#firstmenu a:hover{
 	font-weight: 600;
 	color: #4f4e87;
 }
-#firstmenu menuitem menu menuitem::before {
+#firstmenu a::before {
   content: "• ";
   color: black;
+}
+#gallery img{
+	width:140px;
+	height:140px;
+}
+#gallery .columns{
+	margin: 0;
 }

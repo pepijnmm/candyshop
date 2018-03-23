@@ -37,6 +37,7 @@
                     @else
                     <div id="usermenu">
                         <ul>
+                            <li><a href="/" >webshop</a></li>
                             <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
@@ -55,10 +56,10 @@
             <menuitem class="parentmenuitem">
                 Artikel
                 <menu class="childmenu">
-                    <menuitem  onclick="">
+                    <menuitem>
                     <a href="{{action('ProductController@index')}}">Index</a>
                     </menuitem>
-                    <menuitem  onclick="">
+                    <menuitem>
                     <a href="{{action('ProductController@create')}}">Nieuwe artikel</a>
                     </menuitem>
                 </menu>
@@ -66,10 +67,10 @@
             <menuitem class="parentmenuitem">
                 Categorie
                 <menu class="childmenu">
-                    <menuitem  onclick="">
+                    <menuitem>
                     <a href="">Index</a>
                     </menuitem>
-                    <menuitem  onclick="">
+                    <menuitem>
                     <a href="">Nieuwe categorie</a>
                     </menuitem>
                 </menu>
@@ -77,11 +78,19 @@
             <menuitem class="parentmenuitem">
                 Gebruikers
                 <menu class="childmenu">
-                    <menuitem  onclick="">
+                    <menuitem>
                     <a href="">Index</a>
                     </menuitem>
-                    <menuitem  onclick="">
+                    <menuitem >
                     <a href="">Nieuwe gebruiker</a>
+                    </menuitem>
+                </menu>
+            </menuitem>
+            <menuitem class="parentmenuitem">
+                Foto's
+                <menu class="childmenu">
+                    <menuitem>
+                    <a href="{{action('ExtraController@gallery')}}">Gallerie</a>
                     </menuitem>
                 </menu>
             </menuitem>

@@ -28,6 +28,8 @@ Route::group(['middleware' => 'GuestCheck'], function () {
 });
 Route::group(['middleware' => 'AdminCheck'], function () {
 	Route::resource('admin/artikelen','ProductController');
+
+	Route::get('gallerie', 'ExtraController@gallery');
 	Route::get('admin', function () {
 
 		return redirect()->action('ProductController@index');
