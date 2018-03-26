@@ -17,9 +17,9 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->string('session_id')->nullable();
-            $table->enum('status', ['active', 'paid', 'send', 'received']);
-            $table->double('total_price');
-            $table->integer('address_id')->references('id')->on('addresses')->onDelete('restrict');
+            $table->enum('status', ['active', 'paid', 'send', 'received'])->default('active');
+            $table->double('total_price')->default('0');
+            $table->integer('address_id')->references('id')->on('addresses')->onDelete('restrict')->nullable();;
             $table->string('track_code')->nullable();
             $table->timestamps();
         });

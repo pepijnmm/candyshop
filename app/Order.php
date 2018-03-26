@@ -13,7 +13,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'status', 'track_code', 'total_price', 'address_id'
+        'user_id', 'session_id', 'status', 'track_code', 'total_price', 'address_id'
     ];
 
     /**
@@ -29,10 +29,10 @@ class Order extends Model
     }
 	public function address()
     {
-        return $this->belongsTo('App\Addresses');
+        return $this->belongsTo('App\Address');
     }
 	public function products()
     {
-        return $this->belongsToMany('App\Products');
+        return $this->hasMany('App\Product', 'product');
     }
 }

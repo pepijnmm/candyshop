@@ -25,14 +25,14 @@ class Category extends Model
     ];
 	public function childeren()
     {
-        return $this->hasMany('App\Categories');
+        return $this->hasMany('App\Category');
     }
 	public function parent()
     {
-        return $this->belongsTo('App\Categories');
+        return $this->belongsTo('App\Category');
     }
 	public function products()
     {
-        return $this->belongsToMany('App\Products');
+        return $this->belongsToMany('App\Product');
     }
 }

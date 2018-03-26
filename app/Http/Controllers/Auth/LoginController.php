@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Order;
+use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -17,6 +22,8 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
+    private $order;
 
     use AuthenticatesUsers;
 
@@ -35,5 +42,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->order = Order::firstOrNew(['session_id' => Session::getId()]);
+
+        $this->validate($request, [
+            $this->username() => 'required|string', 'password' => 'required|string',
+        ]);
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $newOrder = Order::firstOrNew(['user_id' => Auth::id(), 'session_id' => Session::getId(), 'status' => 'active']);
+        $newOrder->products()->union($this->order->products());
+        $newOrder->save();
+        $this->order->forceDelete();
     }
 }

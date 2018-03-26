@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Product;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -16,9 +19,19 @@ class OrderController extends Controller
 
     public function cart()
     {
-        $order = Order::all()->firstWhere('session_id', '==', Session::getId());
-        if ($order) {
-            return view('order.show',['order'=>$order]);
+        if (Auth::guest()) {
+            $order = Order::firstOrNew(['session_id' => Session::getId()]);
+            $order = Order::find(1);
+            if ($order) {
+                return view('order.show', ['order' => $order]);
+            }
+        }
+        else {
+            $order = Order::firstOrNew(['user_id' => Auth::id(), 'session_id' => Session::getId(), 'status' => 'active']);
+            $order = Order::find(1);
+            if ($order) {
+                return view('order.show', ['order' => $order]);
+            }
         }
         Session::flash('alert-warning', 'Winkelwagen kon niet worden gevonden.');
         return redirect()->action('OrderController@index');
