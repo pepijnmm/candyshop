@@ -12,6 +12,8 @@ class ExtraController extends Controller
     {
         $this->middleware('AdminCheck');
     }
+	
+	//hij slaat de afbeelding op, veranderd de naam met een datum erachter en daarna doet die de naam terug sturen
     public function fileUpload(Request $request){
         $validator = Validator::make($request->only('image'), [
 
@@ -21,13 +23,17 @@ class ExtraController extends Controller
         if ($validator->fails()) {
             return '';
         }
-        $image = $request->file('image');
+        try{
+		$image = $request->file('image');
         $input['imagename'] = date('Y-m-d H-i-s').'.'.$image->getClientOriginalExtension();
-        $request->merge(["image_location" => $input['imagename']]);
         $destinationPath = public_path('/images');
-
+		
         $image->move($destinationPath, $input['imagename']);
-    	return $input['imagename'];
+		}
+		catch(){
+			return '';
+		}
+		return $input['imagename'];
     }
     public function gallery(){
         $images = preg_grep('~\.(jpeg|jpg|png|gif|svg)$~', scandir(public_path('/images')));

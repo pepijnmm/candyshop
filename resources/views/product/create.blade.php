@@ -41,6 +41,5 @@
 	<div class="row">
 		<input class="button-primary" type="submit" value="Opslaan">
 	</div>
-	</row>
 </form>
 @endsection

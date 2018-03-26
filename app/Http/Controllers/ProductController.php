@@ -45,10 +45,10 @@ class ProductController extends Controller
         if($pictureupload){
             $ExtraController = new ExtraController;
             $request->merge(["image_location" => $ExtraController->fileUpload($request)]);
-        }
-        $validator = Validator::make($request->except('image'), $product->rules);
-        if ($validator->fails()) {
-            return redirect()->action('ProductController@create')->withInput()->withErrors($validator);
+        }		
+        if (empty($request->image_location)) {
+			Session::flash('alert-warning', 'Uploaden ging fout.');
+            return redirect()->action('ProductController@create')->withInput();
         }
         Product::create($request->except('image'));
         Session::flash('alert-success', 'product toegevoegd');
@@ -58,7 +58,7 @@ class ProductController extends Controller
     //hier kan je een product zien
     public function show($id){
         $product = Product::find($id);
-        if ($product) {
+        if (!empty($product)) {
         return view('product.show',['product'=>$product]);
         }
         Session::flash('alert-warning', 'product kon niet worden gevonden');
@@ -68,7 +68,7 @@ class ProductController extends Controller
     //hier kan is een form om een product te bewerken
     public function edit($id){
         $product = Product::find($id);
-        if ($product) {
+        if (!empty($product)) {
             return view('product.edit',['product'=>$product]);
         }
         Session::flash('alert-warning', 'product kon niet worden gevonden');
@@ -78,12 +78,25 @@ class ProductController extends Controller
     //hier word het bewerken gecontroleerd en opgeslagen
     public function update(Request $request, $id){
          $product = Product::find($id);
-        if ($product) {
-            $validator = Validator::make($request->all(), $product->rules);
+        if (!empty($product)) {		
+			$pictureupload = false;
+			if(!empty($request->image)){
+				$pictureupload = true;
+				$request->merge(["image_location" => "/"]);
+			}
+            $validator = Validator::make($request->except('image'), $product->rules);
             if ($validator->fails()) {
                 return redirect()->action('ProductController@edit', $id)->withInput()->withErrors($validator);
             }
-            $product->update($request->all());
+			if($pictureupload){
+            $ExtraController = new ExtraController;
+            $request->merge(["image_location" => $ExtraController->fileUpload($request)]);
+			}		
+			if (empty($request->image_location)) {
+				Session::flash('alert-warning', 'Uploaden ging fout.');
+				return redirect()->action('ProductController@create')->withInput();
+			}
+            $product->update($request->except('image'));
             Session::flash('alert-success', 'product geupdate');
             return redirect()->action('ProductController@show', $id);
         }
@@ -92,7 +105,7 @@ class ProductController extends Controller
     //hiermee kan een product worden verwijderd
     public function destroy($id){
         $product = Product::find($id);
-        if ($product) {
+        if (!empty($product)) {
             Product::destroy($id);
             Session::flash('alert-success', 'product verwijderd');
             return redirect()->action('ProductController@index');

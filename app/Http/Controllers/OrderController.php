@@ -19,6 +19,12 @@ class OrderController extends Controller
 
     public function cart()
     {
+		$order = Order::find(1);
+		foreach ($order->products as $product)
+            {
+                var_dump($product->name);
+            }
+			die();
         if (Auth::guest()) {
             $order = Order::firstOrNew(['session_id' => Session::getId()]);
             $order = Order::find(1);

@@ -39,6 +39,7 @@
 	<div class="row">
 		<input class="button-primary" type="submit" value="Opslaan">
 	</div>
+	</row>
 </form>
 <form action="{{ action('ProductController@destroy',$product->id)   }}" method="POST">
             {{ method_field('DELETE') }}
