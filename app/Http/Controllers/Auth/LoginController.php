@@ -56,8 +56,21 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         $newOrder = Order::firstOrNew(['user_id' => Auth::id(), 'session_id' => Session::getId(), 'status' => 'active']);
-        $newOrder->products()->union($this->order->products());
+
+        foreach ($this->order->products as $product) {
+            if($newOrder->products->contains('id', $product->id))
+            {
+                $newAmount = $newOrder->products->where('id', $product->id)->first()->pivot->amount + $product->pivot->amount;
+                $newOrder->products()->updateExistingPivot($product->id, ['amount' => $newAmount]);
+            }
+            else{
+                $newOrder->products()->save($product, ['amount' => $product->pivot->amount]);
+            }
+        }
+
         $newOrder->save();
+
+        $this->order->products()->detach();
         $this->order->forceDelete();
     }
 }
