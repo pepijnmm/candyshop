@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ action('ProductController@store')   }}" method="POST">
+<form method="POST" action="{{action('ProductController@store')}}" accept-charset="UTF-8" enctype="multipart/form-data">
             {{ method_field('POST') }}
             {{ csrf_field() }}
 	<div class="row">
@@ -10,9 +10,10 @@
 		  <input required class="u-full-width" name="name" type="text" value="{{old('name')}}">
 		</div>
 		<div class="six columns">
-		  <label for="image_location">Plaatje</label>
-		  {!! Form::file('image', array('class' => 'image')) !!}
-		  <input required class="u-full-width" name="image_location" type="text" value="{{old('image_location')}}">
+		  <label for="image_location">Plaatje(upload of vul naam in)</label>
+		  <input name="image" type="file" value="{{old('image')}}">
+		  <label for="image_location">locatie(leeg laten bij uploaden)</label>
+		  <input class="u-full-width" name="image_location" type="text" value="{{old('image_location')}}">
 		</div>
 	</div>
 	<div class="row">

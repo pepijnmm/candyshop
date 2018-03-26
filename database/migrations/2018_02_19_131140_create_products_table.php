@@ -12,15 +12,6 @@ class CreateProductsTable extends Migration
      * @return void
      */
 
-    public $rules = [
-        'name' => 'required||unique:posts|max:100',
-        'price' => 'required|max:30|regex:/^[0-9]{3}+\.?[0-9]{2}$/',
-        'description' => 'required|max:500',
-        'stock' => 'required',
-        'weight' => 'required',
-        'image_location' => 'required',
-        'discount' => '',
-    ];
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
