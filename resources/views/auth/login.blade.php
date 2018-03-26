@@ -1,14 +1,5 @@
-<html>
-  <head>
-      <link rel="stylesheet" type="text/css" href="/css/fontawesome-all.min.css">
-      <link rel="stylesheet" type="text/css" href="/css/skeleton.css">
-      <link rel="stylesheet" type="text/css" href="/css/removeDefaultBrowser.css">
-      <link rel="stylesheet" type="text/css" href="/css/main.css">
-      <script src="/javascript/jquery.min.js"></script>
-      <script src="/javascript/main.js"></script>
-      <title>Ye sweet shoppe</title>
-  </head>
-  <body>
+@extends('layouts.loginregister')
+@section('content')
     <div id="login">
 
     <form class="container form-horizontal" method="POST" action="{{ route('login') }}">
@@ -24,10 +15,10 @@
         </div>
       </div>
       <div class="row secondrow">
+        <div class="seven columns">
+          <button onclick="location.href='{{action('UserController@register')}}'" type="button">Naar register</button>
+        </div>
         <div class="five columns">
-          <br />
-          </div>
-          <div class="five columns">
           <input class="button-primary" type="submit" value="Login">
         </div>
       </div>
@@ -36,3 +27,4 @@
     </div>
   </body>
 </html>
+@endsection

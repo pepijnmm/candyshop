@@ -127,7 +127,7 @@
         <div class="two columns">&nbsp;</div>
     </div>
     <div class="row" id="copyright">
-        <p>Copyright 2017</p>
+        <p>Copyright 2018</p>
     </div>
 </footer>
 </body>

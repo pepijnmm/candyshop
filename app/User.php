@@ -21,7 +21,21 @@ class User extends Authenticatable
         'password' => 'required',
         'role'     =>   'required'
     ];
+	public $ruleschange = [
+        'first_name' => 'required||max:30',
+        'second_name' => 'required|max:30',
+        'email' => 'required|max:500',
+        'phone_number' => '',
+        'role'     =>   'required'
+    ];
 	public $userregister = [
+        'first_name' => 'required||max:30',
+        'second_name' => 'required|max:30',
+        'email' => 'required|max:500',
+        'phone_number' => '',
+        'password' => 'required',
+    ];
+	public $userchange = [
         'first_name' => 'required||max:30',
         'second_name' => 'required|max:30',
         'email' => 'required|max:500',
