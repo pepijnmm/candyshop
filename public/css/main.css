@@ -164,7 +164,7 @@ header #userhover:hover #usermenu ul,#usermenu:hover ul{
 .sub5{
     margin-left: 100px;
 }
-#oneproduct  #productinfo #leftinfo,#oneproduct  #productinfo #rightinfo{
+#leftinfo,#rightinfo{
     width:50%;
     float:left;
 }

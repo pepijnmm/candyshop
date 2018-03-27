@@ -8,6 +8,8 @@
 			<h2 id="producttitle">{{ (!empty($products[0]))?$products[0]->name:'' }}</h2>
 			    <hr>
             <img src="images/{{ (!empty($products[0]))?$products[0]->image_location:''}}" alt="product plaatje"/>
+            <hr>
+            <p id="producttitle">{{ (!empty($products[0]))?$products[0]->small_description:'' }}</p>
         </div>
 	</a>
 </div>

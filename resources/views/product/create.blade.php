@@ -39,7 +39,13 @@
 		</div>
 	</div>
 	<div class="row">
-		<input class="button-primary" type="submit" value="Opslaan">
+		<div class="six columns">
+		  <label for="small_description">Korte beschrijving</label>
+		  <textarea required maxlength="200" rows="2" cols="25" class="u-full-width" name="small_description">{{old('small_description')}}</textarea>
+		</div>
+		<div class="six columns">
+			<input class="button-primary" type="submit" value="Opslaan">
+		</div>
 	</div>
 </form>
 @endsection

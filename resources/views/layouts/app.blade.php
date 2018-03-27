@@ -29,7 +29,7 @@
             <div id="rightbuttons" class="two columns">
                 <div id="userhover">
                 @if(Auth::guest()) 
-                <a href="{{ route('login') }}">
+                <a href="{{ action('Auth\LoginController@showLoginForm') }}">
                 @endif
                     <i class="fas fa-user" ></i>
                     @if (Auth::guest())
@@ -39,7 +39,7 @@
                         <ul>
                             <li><a href="/" >webshop</a></li>
                             <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ action('Auth\LoginController@logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </ul>
@@ -79,10 +79,10 @@
                 Gebruikers
                 <menu class="childmenu">
                     <menuitem>
-                    <a href="">Index</a>
+                    <a href="{{action('UserController@index')}}">Index</a>
                     </menuitem>
                     <menuitem >
-                    <a href="">Nieuwe gebruiker</a>
+                    <a href="{{action('UserController@create')}}">Nieuwe gebruiker</a>
                     </menuitem>
                 </menu>
             </menuitem>

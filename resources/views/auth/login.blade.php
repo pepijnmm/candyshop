@@ -2,7 +2,7 @@
 @section('content')
     <div id="login">
 
-    <form class="container form-horizontal" method="POST" action="{{ route('login') }}">
+    <form class="container form-horizontal" method="POST" action="{{ action('Auth\LoginController@login') }}">
     	{{ csrf_field() }}
       <div class="row">
         <div class="five columns">

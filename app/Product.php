@@ -11,6 +11,7 @@ class Product extends Model
     public $rules = [
         'name' => 'required||max:100',
         'price' => 'required|max:5|regex:/^[0-9]{1,3}+\.?[0-9]{2}$/',
+        'small_description' => 'required|max:200',
         'description' => 'required|max:500',
         'storage' => 'required',
         'weight' => 'required',
@@ -23,7 +24,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price','description','storage','weight','image_location','discount',
+        'name', 'price','description','storage','weight','image_location','discount','small_description'
     ];
 
     /**

@@ -33,18 +33,24 @@
             <div id="rightbuttons" class="three columns">
                 <div id="userhover">
                 @if(Auth::guest()) 
-                <a href="{{ route('login') }}">
+                <a href="{{ action('Auth\LoginController@showLoginForm') }}">
                 @endif
                     <i class="fas fa-user" ></i>
                     @if (Auth::guest())
                     </a>
+                    <div id="usermenu">
+                        <ul>
+                            <li><a href="{{action('Auth\LoginController@showLoginForm')}}" >login</a></li>
+                            <li><a href="{{action('UserController@register')}}" >registreren</a></li>
+                        </ul>
+                    </div>
                     @else
                     <div id="usermenu">
                         <ul>
-                            <li><a href="#" >instellingen</a></li>
+                            <li><a href="{{action('UserController@showcurrent')}}" >account</a></li>
                             <li><a href="#" >orders</a></li>
                             <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ action('Auth\LoginController@logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                             @if(Auth::user()->role == 1)

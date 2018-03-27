@@ -18,10 +18,18 @@
 				<p>{{$user->first_name}}</p>
 				<p>{{$user->second_name}} </p>
 				<p>{{$user->email}} </p>
-				<p>{{$user->phone_number}} </p>
-				@if($user->role>0)<p>met {{$user->role}}</p>@endif
-				<input type="number" id="aantalproducten" min="0" max="{{$user->storage}}" value="{{(empty(old('aantalproducten')))?(($user->storage>0)?1:0):old('aantalproducten')}}">
+				<p>{{$user->phone_number}} &nbsp;</p>
+				@if(Auth::user()->role>0)<p>{{($user->role>0)?'ja':'nee'}}</p>@endif
 			</div>
+	</div>
+	<div class="six columns">
+		<br/>
+	</div>
+	<div class="row">
+		<div class="six columns">
+			<button onclick="location.href='{{action('UserController@passwordchange')}}'" type="button">Wachtwoord aanpassen</button>
+			<button onclick="location.href='{{action('UserController@useredit')}}'" type="button">Aanpassen</button>
+		</div>
 	</div>
 </div>
 @endsection

@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->double('price', 5, 2);
             $table->string('name', 100);
+            $table->string('small_description', 200);
             $table->string('description', 500);
             $table->double('weight');
             $table->integer('storage');

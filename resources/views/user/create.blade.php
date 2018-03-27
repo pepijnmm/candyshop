@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="six columns">
 		  <label for="password">Wachtwoord</label>
-		  <input required class="u-full-width" name="password" type="text" value="{{old('password')}}">
+		  <input required class="u-full-width" name="password" type="password" value="{{old('password')}}">
 		</div>
 		<div class="six columns">
 		  <label for="role">Admin</label>
