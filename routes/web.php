@@ -17,13 +17,15 @@
 
 
 Auth::routes();
+Route::get('register', 'UserController@register');
+Route::post('register', 'UserController@userstore');
 
-Route::post('fileUpload','ExtraController@fileUpload');
 Route::get('/', 'PublicController@index');
 Route::get('about', 'PublicController@about');
 
 Route::resource('artikelen','ProductController',['only'=>['show']]);
 Route::group(['middleware' => 'GuestCheck'], function () {
+Route::resource('user','ProductController');
 
 });
 Route::group(['middleware' => 'AdminCheck'], function () {

@@ -10,8 +10,8 @@
 		  <input required class="u-full-width" name="first_name" type="text" value="{{old('first_name')}}">
 		</div>
 		<div class="six columns">
-		  <label for="last_name">Tussenvoegsel en achternaam</label>
-		  <input required class="u-full-width" name="last_name" type="text" value="{{old('last_name')}}">
+		  <label for="second_name">Tussenvoegsel en achternaam</label>
+		  <input required class="u-full-width" name="second_name" type="text" value="{{old('second_name')}}">
 		</div>
 	</div>
 	<div class="row">

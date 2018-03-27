@@ -3,19 +3,21 @@
 @section('content')
 <table>
   <tr>
-    <th>Naam</th>
-    <th>Prijs</th>
-	<th>Voorraad</th>
-	<th>Korting</th>
+    <th>Voornaam</th>
+    <th>Tussenvoegsel en achternaam</th>
+	<th>E-mail</th>
+	<th>Telefoon-nummer</th>
+	<th>Admin</th>
   </tr>
-  @foreach ($products as $product)
+  @foreach ($users as $user)
 	<tr>
-    <td><a href="{{action('ProductController@edit',$product->id)}}">{{$product->name}}</a></td>
-    <td><a href="{{action('ProductController@edit',$product->id)}}">€{{$product->price}}</a></td>
-	<td><a href="{{action('ProductController@edit',$product->id)}}">{{$product->storage}}</a></td>
-	<td><a href="{{action('ProductController@edit',$product->id)}}">{{$product->discount}}</a></td>
+    <td><a href="{{action('UserController@edit',$user->id)}}">{{$user->first_name}}</a></td>
+    <td><a href="{{action('UserController@edit',$user->id)}}">{{$user->second_name}}</a></td>
+	<td><a href="{{action('UserController@edit',$user->id)}}">{{$user->email}}</a></td>
+	<td><a href="{{action('UserController@edit',$user->id)}}">{{$user->phone_number}}</a></td>
+	<td><a href="{{action('UserController@edit',$user->id)}}">{{($user->role == 1?ja:nee)}}</a></td>
   </tr>
   @endforeach
  </table>
-			<input class="button-primary" type="button" value="Toevoegen" onclick="location.href='{{ action('ProductController@create')   }}'">
+			<input class="button-primary" type="button" value="Toevoegen" onclick="location.href='{{ action('UserController@create')   }}'">
 @endsection

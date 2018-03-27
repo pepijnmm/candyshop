@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use Illuminate\Support\Facades\Validator;
+use Session;
+use Illuminate\Support\Facades\Hash;
 
 
-class ExtraController extends Controller
+class UserController extends Controller
 {
     //kijkt of de persoon een admin is en als die dat niet is kan die alleen bij de register en userstore en userupdate useredit
     public function __construct()
@@ -24,13 +27,14 @@ class ExtraController extends Controller
     }
     public function userstore(Request $request){
         $user = New User;
-        $validator = Validator::make($request, $user->userregister);
+		$validator = Validator::make($request->all(), $user->userregister);
         if ($validator->fails()) {
             return redirect()->action('UserController@register')->withInput()->withErrors($validator);
         }
-        User::create($request);
+		$request->merge(["password" => Hash::make($request->password)]);
+        User::create($request->all());
         Session::flash('alert-success', 'gebruiker aangemaakt');
-        return redirect()->action('Controller@register');
+        return redirect()->to('/');
     }
 	public function useredit($id){
         $user = User::find($id);
@@ -43,7 +47,7 @@ class ExtraController extends Controller
     public function userupdate(Request $request, $id){
         $user = User::find($id);
         if (!empty($user)) {
-            $validator = Validator::make($request->all(), $user->userregister);
+            $validator = Validator::make($request->all(), $user->userchange);
             if ($validator->fails()) {
                 return redirect()->action('UserController@useredit')->withInput()->withErrors($validator);
             }
@@ -68,14 +72,15 @@ class ExtraController extends Controller
     public function store(Request $request){
         $user = New User;
 		if ($request->role == "on") {
-			$request->merge(["role" => true]);
+			$request->merge(["role" => 1]);
 		} else {
-			$request->merge(["role" => false]);
+			$request->merge(["role" => 0]);
 		}
         $validator = Validator::make($request, $user->rules);
         if ($validator->fails()) {
             return redirect()->action('UserController@create')->withInput()->withErrors($validator);
         }
+		$request->merge(["password" => Hash::make($request->password)]);
         User::create($request);
         Session::flash('alert-success', 'gebruiker aangemaakt');
         return redirect()->action('UserController@create');
@@ -104,7 +109,7 @@ class ExtraController extends Controller
 			} else {
 				$request->merge(["role" => false]);
 			}
-            $validator = Validator::make($request->all(), $user->rules);
+            $validator = Validator::make($request->all(), $user->ruleschange);
             if ($validator->fails()) {
                 return redirect()->action('UserController@edit')->withInput()->withErrors($validator);
             }
