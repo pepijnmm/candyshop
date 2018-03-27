@@ -23,7 +23,7 @@ class LoginController extends Controller
     |
     */
 
-    private $order;
+    private $oldSession;
 
     use AuthenticatesUsers;
 
@@ -46,8 +46,7 @@ class LoginController extends Controller
 
     protected function validateLogin(Request $request)
     {
-        $this->order = Order::firstOrNew(['session_id' => Session::getId()]);
-
+        $this->oldSession = Session::getId();
         $this->validate($request, [
             $this->username() => 'required|string', 'password' => 'required|string',
         ]);
@@ -55,9 +54,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        $newOrder = Order::firstOrNew(['user_id' => Auth::id(), 'session_id' => Session::getId(), 'status' => 'active']);
+        $oldOrder = Order::firstOrNew(['session_id' => $this->oldSession]);
 
-        foreach ($this->order->products as $product) {
+        $newOrder = Order::firstOrNew(['user_id' => Auth::id(), 'status' => 'active']);
+
+        foreach ($oldOrder->products as $product) {
             if($newOrder->products->contains('id', $product->id))
             {
                 $newAmount = $newOrder->products->where('id', $product->id)->first()->pivot->amount + $product->pivot->amount;
@@ -68,9 +69,9 @@ class LoginController extends Controller
             }
         }
 
-        $newOrder->save();
+        $oldOrder->products()->detach();
+        $oldOrder->forceDelete();
 
-        $this->order->products()->detach();
-        $this->order->forceDelete();
+        $newOrder->save();
     }
 }

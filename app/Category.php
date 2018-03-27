@@ -23,7 +23,7 @@ class Category extends Model
      */
     protected $hidden = [
     ];
-	public function childeren()
+	public function children()
     {
         return $this->hasMany('App\Category');
     }

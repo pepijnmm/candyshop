@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="/css/removeDefaultBrowser.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigationMenu.css">
     <script src="/javascript/jquery.min.js"></script>
     <script src="/javascript/main.js"></script>
     <title>Ye sweet shoppe</title>
@@ -53,17 +54,22 @@
                     </div>
                     @endif
                 </div>
-				
                 <a href="{{ action('OrderController@cart') }}">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
             </div>
         </div>
         <nav>
-            <menu>
-                <menuitem><a href="">Chocola</a></menuitem>
-                <menuitem><a href="">Wereld snoep</a></menuitem>
-            </menu>
+            @foreach(\App\Category::where('child_from', null)->get() as $parent)
+            <div class="dropdown">
+                <button class="dropbtn">{{$parent->name}}</button>
+                <div class="dropdown-content">
+                @foreach(\App\Category::where('child_from', $parent->id)->get() as $child)
+                    <a href="#">{{$child->name}}</a>
+                @endforeach
+                </div>
+            </div>
+            @endforeach
         </nav>
     </div>
 </header>
