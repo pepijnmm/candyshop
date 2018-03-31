@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{action('CategoryController@store')}}" accept-charset="UTF-8" enctype="multipart/form-data">
+<form method="POST" action="{{action('CategoryController@store')}}" enctype="multipart/form-data">
             {{ method_field('POST') }}
             {{ csrf_field() }}
 	<div class="row">
@@ -18,6 +18,12 @@
 				@endforeach
 			</select>
 			</div>
+		</div>
+		<div class="six columns">
+		  <label for="image_location">Plaatje(upload of vul naam in)</label>
+		  <input name="image" type="file" value="{{old('image')}}">
+		  <label for="image_location">locatie(leeg laten bij uploaden)</label>
+		  <input class="u-full-width" name="image_location" type="text" value="{{old('image_location')}}">
 		</div>
 	<div class="row">
 		<input class="button-primary" type="submit" value="Opslaan">

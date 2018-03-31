@@ -31,15 +31,28 @@ class CategoryController extends Controller
     //hier word het opgeslagen
     public function store(Request $request){
         $category = New Category;
-        $validator = Validator::make($request->all(), $category->rules);
+        $pictureupload = false;
+        if(!empty($request->image)){
+            $pictureupload = true;
+            $request->merge(["image_location" => "/"]);
+        }
+        $validator = Validator::make($request->except('image'), $category->rules);
         if ($validator->fails()) {
             return redirect()->action('CategoryController@create')->withInput()->withErrors($validator);
         }
-        if($category->child_from == 0){
-            $request = $request->except('child_from');
+        if($pictureupload){
+            $ExtraController = new ExtraController;
+            $request->merge(["image_location" => $ExtraController->fileUpload($request)]);
+            if (empty($request->image_location)) {
+                Session::flash('alert-warning', 'Uploaden ging fout.');
+                return redirect()->action('CategoryController@create')->withInput();
+            }
+        }       
+        if($request->child_from == 0){
+            $request = $request->except(['child_from','image']);
         }
         else{
-            $request = $request->all();
+            $request = $request->except('image');
         }
         Category::create($request);
         Session::flash('alert-success', 'Category aangemaakt');
@@ -68,17 +81,27 @@ class CategoryController extends Controller
     public function update(Request $request, $id){
         $category = Category::find($id);
         if (!empty($category)) {
-            $validator = Validator::make($request->all(), $category->ruleschange);
-            $validatortwo = Validator::make($request->all(), ['name' => 'unique:categories,name,'.$id,]);
+            $pictureupload = false;
+            if(!empty($request->image)){
+                $pictureupload = true;
+                $request->merge(["image_location" => "/"]);
+            }
+            $validator = Validator::make($request->except('image'), (['name' => 'unique:categories,name,'.$id,]+$category->rules));
             if ($validator->fails()) {
-
                 return redirect()->action('CategoryController@edit',$id)->withInput()->withErrors($validator);
             }
-            if ($validatortwo->fails()) {
-                
-                return redirect()->action('CategoryController@edit',$id)->withInput()->withErrors($validatortwo);
+            if($pictureupload){
+                $ExtraController = new ExtraController;
+                $request->merge(["image_location" => $ExtraController->fileUpload($request)]);
+                if (empty($request->image_location)) {
+                    Session::flash('alert-warning', 'Uploaden ging fout.');
+                    return redirect()->action('CategoryController@edit',$id)->withInput();
+                }
+            }       
+            if($request->child_from == 0){
+                $request->merge(["child_from" => NULL]);
             }
-            $category->update($request->all());
+            $category->update($request->except('image'));
             Session::flash('alert-success', 'Category bijgewerkt!');
             return redirect()->action('CategoryController@show', $id);
         }
