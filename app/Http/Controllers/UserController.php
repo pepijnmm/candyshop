@@ -168,7 +168,7 @@ class UserController extends Controller
 			}
             $validator = Validator::make($request->all(), $user->ruleschange);
             if ($validator->fails()) {
-                return redirect()->action('UserController@edit')->withInput()->withErrors($validator);
+                return redirect()->action('UserController@edit',$id)->withInput()->withErrors($validator);
             }
             $user->update($request->all());
             Session::flash('alert-success', 'Gebruiker bijgewerkt!');

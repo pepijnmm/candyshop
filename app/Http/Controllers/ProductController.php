@@ -64,6 +64,15 @@ class ProductController extends Controller
         Session::flash('alert-warning', 'product kon niet worden gevonden');
         return redirect()->action('ProductController@index');
     }
+        //hier kan je een product zien
+    public function showadmin($id){
+        $product = Product::find($id);
+        if (!empty($product)) {
+        return view('product.showadmin',['product'=>$product]);
+        }
+        Session::flash('alert-warning', 'product kon niet worden gevonden');
+        return redirect()->action('ProductController@index');
+    }
 
     //hier kan is een form om een product te bewerken
     public function edit($id){

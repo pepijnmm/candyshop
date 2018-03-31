@@ -30,7 +30,7 @@ class ExtraController extends Controller
 		
         $image->move($destinationPath, $input['imagename']);
 		}
-		catch(){
+		catch(Exception $e){
 			return '';
 		}
 		return $input['imagename'];

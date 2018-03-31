@@ -90,28 +90,37 @@
     <div class="two columns">&nbsp;</div>
     <div class="eight columns">
         <main id="body" class="row">
-            @if(!empty(Session::get('alert-success')))
-                <div class="alert alert-success">{{Session::pull('alert-success')}}</div>
-            @endif
-            @if(!empty(Session::get('alert-info')))
-                <div class="alert alert-info">{{Session::pull('alert-info')}}</div>
-            @endif
-            @if(!empty(Session::get('alert-warning')))
-                <div class="alert alert-warning">{{Session::pull('alert-warning')}}</div>
-            @endif
-            @if(!empty(Session::get('alert-error')))
-                <div class="alert alert-error">{{Session::pull('alert-error')}}</div>
-            @endif
-            @if ($errors->any())
-                <div class="alert alert-error">Errors:
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @yield('content')
+		@if(!empty(Session::get('alert-success')))
+			<div class="alert alert-success">{{Session::pull('alert-success')}}</div>
+		@endif
+		@if(!empty(Session::get('alert-info')))
+			<div class="alert alert-info">{{Session::pull('alert-info')}}</div>
+		@endif
+		@if(!empty(Session::get('alert-warning')))
+			<div class="alert alert-warning">{{Session::pull('alert-warning')}}</div>
+		@endif
+		@if(!empty(Session::get('alert-error')))
+			<div class="alert alert-error">{{Session::pull('alert-error')}}</div>
+		@endif
+		@if ($errors->any())
+			<div class="alert alert-error">Errors:
+			<ul>
+				@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+			</div>
+		@endif
+        <div id="breadcrumb">
+            @php
+                $savedir = "";
+            @endphp
+
+            @foreach(array_filter(explode('/',$_SERVER['REQUEST_URI'])) as $dir)
+            <a href="{{$savedir .= '/'.$dir}}">{{$dir}}</a>
+            @endforeach
+        </div>
+                @yield('content')
         </main>
     </div>
     <div class="two columns">&nbsp;</div>
