@@ -238,3 +238,7 @@ h6 {
     font-size:15px;
     background: #f7db1a;
 }
+#category img{
+    width:300px;
+    height:auto;
+}

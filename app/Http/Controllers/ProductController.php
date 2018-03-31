@@ -45,11 +45,12 @@ class ProductController extends Controller
         if($pictureupload){
             $ExtraController = new ExtraController;
             $request->merge(["image_location" => $ExtraController->fileUpload($request)]);
+            if (empty($request->image_location)) {
+                Session::flash('alert-warning', 'Uploaden ging fout.');
+                return redirect()->action('ProductController@create')->withInput();
+            }
         }		
-        if (empty($request->image_location)) {
-			Session::flash('alert-warning', 'Uploaden ging fout.');
-            return redirect()->action('ProductController@create')->withInput();
-        }
+        
         Product::create($request->except('image'));
         Session::flash('alert-success', 'product toegevoegd');
         return redirect()->action('ProductController@create');
@@ -107,7 +108,7 @@ class ProductController extends Controller
 			}
             $product->update($request->except('image'));
             Session::flash('alert-success', 'product geupdate');
-            return redirect()->action('ProductController@show', $id);
+            return redirect()->action('ProductController@showadmin', $id);
         }
     }
 

@@ -110,6 +110,7 @@
             @endphp
 
             @foreach(array_filter(explode('/',$_SERVER['REQUEST_URI'])) as $dir)
+            @if(!empty($savedir))<span> > </span>@endif
             <a href="{{$savedir .= '/'.$dir}}">{{$dir}}</a>
             @endforeach
         </div>

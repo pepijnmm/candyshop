@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ action('ProductController@update',$product->id)   }}" method="POST">
+<form action="{{ action('ProductController@update',$product->id)   }}" enctype="multipart/form-data" method="POST">
             {{ method_field('PUT') }}
             {{ csrf_field() }}
 	<div class="row">
@@ -10,8 +10,10 @@
 		  <input required class="u-full-width" name="name" type="text" value="{{(empty(old('name')))?$product->name:old('name')}}">
 		</div>
 		<div class="six columns">
-		  <label for="image_location">Plaatje</label>
-		  <input required class="u-full-width" name="image_location" type="text" value="{{(empty(old('image_location')))?$product->image_location:old('image_location')}}">
+			  <label for="image_location">Plaatje(upload of vul naam in)</label>
+			  <input name="image" type="file" value="{{(empty(old('image')))?$product->image:old('image')}}">
+			  <label for="image_location">locatie(leeg laten bij uploaden)</label>
+			  <input class="u-full-width" name="image_location" type="text" value="{{(empty(old('image_location')))?$product->image_location:old('image_location')}}">
 		</div>
 	</div>
 	<div class="row">

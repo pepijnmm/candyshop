@@ -16,13 +16,15 @@ class Category extends Model
         public $rules = [
         'name' => 'required|unique:categories,name',
         'child_from' => '',
+        'image_location'=>'',
     ];
     public $ruleschange = [
         'name' => 'required',
         'child_from' => '',
+        'image_location'=>'',
     ];
     protected $fillable = [
-        'name', 'child_from',
+        'name', 'child_from','image_location',
     ];
 
     /**
