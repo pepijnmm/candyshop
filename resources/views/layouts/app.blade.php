@@ -68,10 +68,10 @@
                 Categorie
                 <menu class="childmenu">
                     <menuitem>
-                    <a href="">Index</a>
+                    <a href="{{action('CategoryController@index')}}">Index</a>
                     </menuitem>
                     <menuitem>
-                    <a href="">Nieuwe categorie</a>
+                    <a href="{{action('CategoryController@create')}}">Nieuwe categorie</a>
                     </menuitem>
                 </menu>
             </menuitem>
@@ -119,6 +119,15 @@
             </ul>
             </div>
         @endif
+        <div id="breadcrumb">
+            @php
+                $savedir = "";
+            @endphp
+
+            @foreach(array_filter(explode('/',$_SERVER['REQUEST_URI'])) as $dir)
+            <a href="{{$savedir .= '/'.$dir}}">{{$dir}}</a>
+            @endforeach
+        </div>
                 @yield('content')
         </main>
     </div>

@@ -12,6 +12,15 @@ class Category extends Model
      *
      * @var array
      */
+
+        public $rules = [
+        'name' => 'required|unique:categories,name',
+        'child_from' => '',
+    ];
+    public $ruleschange = [
+        'name' => 'required',
+        'child_from' => '',
+    ];
     protected $fillable = [
         'name', 'child_from',
     ];
@@ -25,11 +34,11 @@ class Category extends Model
     ];
 	public function children()
     {
-        return $this->hasMany('App\Category');
+        return $this->hasMany('App\Category','child_from','id');
     }
 	public function parent()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Category','child_from','id');
     }
 	public function products()
     {

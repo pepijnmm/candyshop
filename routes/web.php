@@ -27,8 +27,7 @@ Route::post('register', 'UserController@userstore');
 
 Route::get('/', 'PublicController@index');
 Route::get('about', 'PublicController@about');
-
-Route::resource('artikelen','ProductController');
+Route::resource('artikelen','ProductController',['only'=>['show']]);
 Route::group(['middleware' => 'GuestCheck'], function () {
 $this->post('logout', 'Auth\LoginController@logout');
 Route::get('user/edit', 'UserController@useredit');
@@ -40,12 +39,18 @@ Route::put('user/password', 'UserController@storepasswordchange');
 
 });
 Route::group(['middleware' => 'AdminCheck'], function () {
-		Route::get('/admin', 'ProductController@index');
-		Route::get('admin/gallerie', 'ExtraController@gallery');
-		Route::put('admin/users/{id}/password','UserController@passwordreset');
+	Route::get('admin', 'ProductController@index');
+	Route::get('admin/gallerie', 'ExtraController@gallery');
+	Route::put('admin/users/{id}/password','UserController@passwordreset');
 	Route::resource('admin/users','UserController');
+	Route::resource('admin/categories','CategoryController');
+	Route::resource('admin/artikelen','ProductController',['except'=>['show']]);
+	Route::get('admin/artikelen/{id}', 'ProductController@showadmin');
 });
 
 //Orders
 Route::get('cart', 'OrderController@cart')->name('cart');
 Route::resource('orders','OrderController',['only'=>['index', 'show']]);
+Route::any('/{any}', function ($any) {
+     return redirect('/');
+});

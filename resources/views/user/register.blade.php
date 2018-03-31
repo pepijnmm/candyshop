@@ -32,7 +32,7 @@
 			</div>
 			<div class="row secondrow">
 				<div class="six columns">
-				  <button onclick="location.href='{{route('login')}}'" type="button">Naar login</button>
+				  <button onclick="location.href='{{action('Auth\LoginController@showLoginForm')}}'" type="button">Naar login</button>
 				</div>
 				<div class="six columns">
 				  <input class="button-primary" type="submit" value="registreren">

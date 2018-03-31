@@ -104,6 +104,15 @@
 			</ul>
 			</div>
 		@endif
+        <div id="breadcrumb">
+            @php
+                $savedir = "";
+            @endphp
+
+            @foreach(array_filter(explode('/',$_SERVER['REQUEST_URI'])) as $dir)
+            <a href="{{$savedir .= '/'.$dir}}">{{$dir}}</a>
+            @endforeach
+        </div>
                 @yield('content')
         </main>
     </div>
