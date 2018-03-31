@@ -50,10 +50,15 @@ Route::group(['middleware' => 'AdminCheck'], function () {
 
 //Orders
 Route::get('cart', 'OrderController@cart')->name('cart');
-Route::resource('orders','OrderController',['only'=>['index', 'show', 'remove']]);
+Route::get('remove/{order}/{product}', 'OrderController@remove');
+Route::get('add/{product}/{amount}', 'OrderController@add');
+Route::resource('orders','OrderController',['only'=>['index', 'show']]);
 Route::any('/{any}', function ($any) {
      return redirect('/');
 });
+
+//Categories
+Route::get('showProducts/{category}', 'PublicController@showProducts');
 
 //Navigation
 foreach(\App\NavigationItem::where('child_from', null)->get() as $parent)

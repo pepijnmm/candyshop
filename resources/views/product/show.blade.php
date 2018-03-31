@@ -33,9 +33,11 @@
 						<p>{{$product->weight}}</p>
 						<p>€{{$product->price}} </p>
 						@if($product->discount>0)<p>met {{$product->discount}}% korting: €{{round($product->price-( $product->price/100*$product->discount),2)  }}</p>@endif
-						<input type="number" id="aantalproducten" min="0" max="{{$product->storage}}" value="{{(empty(old('aantalproducten')))?(($product->storage>0)?1:0):old('aantalproducten')}}">
+						<form method="get">
+						<input type="number" name="amount" id="amount" min="0" max="{{$product->storage}}" value="{{(empty(old('aantalproducten')))?(($product->storage>0)?1:0):old('aantalproducten')}}">
+						</form>
 					</div>
-					<button type="submit" id="buybutton" class="btn btn-success">Kopen</button>
+					<a href="{{ action('OrderController@add', [$product, '1']) }}" id="buybutton" class="button">Kopen</a>
 				</form>
 			</div>
 			<div class="twelf columns" id="productbeschrijving">

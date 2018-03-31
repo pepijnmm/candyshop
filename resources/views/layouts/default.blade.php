@@ -55,7 +55,7 @@
                         <div id="usermenu">
                             <ul>
                                 <li><a href="{{action('UserController@showcurrent')}}" >account</a></li>
-                                <li><a href="#" >orders</a></li>
+                                <li><a href="{{action('OrderController@index')}}" >orders</a></li>
                                 <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
                                 <form id="logout-form" action="{{ action('Auth\LoginController@logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
@@ -78,7 +78,7 @@
                     <button class="dropbtn">{{$parent->name}}</button>
                     <div class="dropdown-content">
                         @foreach(\App\Category::where('child_from', $parent->id)->get() as $child)
-                            <a href="#">{{$child->name}}</a>
+                            <a href="{{ action('PublicController@showProducts', $child) }}">{{$child->name}}</a>
                         @endforeach
                     </div>
                 </div>

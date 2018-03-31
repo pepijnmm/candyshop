@@ -54,6 +54,7 @@ class CategoryController extends Controller
         Session::flash('alert-warning', 'Category kon niet worden gevonden');
         return redirect()->action('CategoryController@index');
     }
+
     //hier kan een gebruiker worden aangepast
     public function edit($id){
         $category = Category::find($id);

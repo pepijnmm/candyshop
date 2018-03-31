@@ -46,7 +46,7 @@
 		</div>
 	</div>
 </form>
-<form action="{{ action('ProductController@destroy',$product->id)   }}" method="POST">
+<form action="{{ action('ProductController@destroy',$product->id) }}" method="POST">
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
 			<input class="button-primary" type="submit" value="Verwijderen">
