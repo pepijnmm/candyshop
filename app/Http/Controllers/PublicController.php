@@ -7,11 +7,14 @@ use App\Product;
 
 class PublicController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $products = Product::all();
-        return view('index',['products' =>$products]);
+        return view('index', ['products' => $products]);
     }
-        public function about(){
-        return view('about');
+
+    public function about()
+    {
+        return view('public.about');
     }
 }

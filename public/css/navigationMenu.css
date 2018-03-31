@@ -9,6 +9,11 @@
     display: block;
 }
 
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: rgba(150, 150, 150, 0.90);
+}
+
 /* Dropdown Button */
 .dropbtn {
     background-color: rgba(200, 200, 200, 0.90);
@@ -16,11 +21,6 @@
     font-size: 16px;
     width: 200px;
     border: none;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: rgba(150, 150, 150, 0.90);
 }
 
 /* Dropdown Content (Hidden by Default) */

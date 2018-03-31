@@ -59,6 +59,17 @@ class OrderController extends Controller
         //
     }
 
+    public function remove($order, $product){
+        if (!empty($product)) {
+            Product::destroy($product->id);
+            $product->orders()->detach($order->id);
+            Session::flash('alert-success', 'product verwijderd');
+            return redirect()->action('OrderController@cart');
+        }
+        Session::flash('alert-warning', 'product kon niet worden gevonden');
+        return redirect()->action('OrderController@cart');
+    }
+
     public function destroy(Order $order)
     {
         //

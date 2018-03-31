@@ -6,13 +6,12 @@ use Illuminate\Hashing\BcryptHasher;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
+        $this->call([
+            NavigationItemSeeder::class,
+        ]);
+
         factory(App\User::class, 10)->create();
         factory(App\Product::class, 10)->create();
         factory(App\Order::class, 10)->create();

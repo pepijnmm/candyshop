@@ -48,4 +48,14 @@ Route::group(['middleware' => 'AdminCheck'], function () {
 
 //Orders
 Route::get('cart', 'OrderController@cart')->name('cart');
-Route::resource('orders','OrderController',['only'=>['index', 'show']]);
+Route::resource('orders','OrderController',['only'=>['index', 'show', 'remove']]);
+
+//Navigation
+foreach(\App\NavigationItem::where('child_from', null)->get() as $parent)
+{
+    $this->get($parent->route, $parent->action);
+    foreach(\App\NavigationItem::where('child_from', $parent->id)->get() as $child)
+    {
+        $this->get($child->route, $child->action);
+    }
+}

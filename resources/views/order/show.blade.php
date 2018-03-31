@@ -16,6 +16,7 @@
                 <td><a>{{$product->storage}}</a></td>
                 <td><a>{{$product->discount}}</a></td>
                 <td><a>{{$product->pivot->amount}}</a></td>
+                <td><a href="{{ action('OrderController@remove', $order, $product) }}"><i class="fas fa-trash"></i></a></td>
             </tr>
         @endforeach
     </table>
