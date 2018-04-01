@@ -8,16 +8,27 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call([
-            NavigationItemSeeder::class,
-        ]);
 
         factory(App\User::class, 10)->create();
         factory(App\Product::class, 10)->create();
         factory(App\Order::class, 10)->create();
         factory(App\Category::class, 10)->create();
         factory(App\Address::class, 10)->create();
+        DB::table('navigation_items')->insert(
+            [
+                'name' => 'Home',
+                'action' => 'PublicController@index',
+                'route' => 'index',
+            ]
+        );
 
+        DB::table('navigation_items')->insert(
+            [
+                'name' => 'About',
+                'action' => 'PublicController@about',
+                'route' => 'about',
+            ]
+        );
         DB::table('users')->insert(
             [
                 'first_name' => 'user',

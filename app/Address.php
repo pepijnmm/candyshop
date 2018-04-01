@@ -23,7 +23,7 @@ class Address extends Model
      */
     protected $hidden = [
     ];
-	public function user()
+	public function User()
     {
         return $this->belongsTo('App\User');
     }

@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.usertemplate')
 
 @section('content')
 <form action="{{ action('UserController@userupdate',$user->id)   }}" method="POST">

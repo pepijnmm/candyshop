@@ -18,7 +18,7 @@
                 <a href="/"><img src="/images/YSS.jpg" alt="Logo"></a>
             </div>
             <div id="searchbox" class="two columns">
-                <form>
+                <form method="GET" action="{{ action('PublicController@search',((empty($category))?0:$category->id)  ) }}">
                     <input type="text" name="search" placeholder="Zoeken">
                     <button type="submit" id="searchId" class="btn btn-success">
                         <i class="fas fa-search"></i>
@@ -26,6 +26,7 @@
                 </form>
             </div>
             <div class="six columns">
+            &nbsp;
                 @foreach(\App\NavigationItem::where('child_from', null)->get() as $parent)
                     <div class="dropdown">
                         <button onclick="location.href='{{ action($parent->action) }}'">{{$parent->name}}</button>
@@ -73,11 +74,12 @@
             </div>
         </div>
         <nav>
+        &nbsp;
             @foreach(\App\Category::where('child_from', null)->get() as $parent)
                 <div class="dropdown">
-                    <button class="dropbtn">{{$parent->name}}</button>
+                    <button onclick="location.href='{{ action('PublicController@showProducts', $parent->id) }}'" class="dropbtn">{{$parent->name}}</button>
                     <div class="dropdown-content">
-                        @foreach(\App\Category::where('child_from', $parent->id)->get() as $child)
+                        @foreach($parent->Children as $child)
                             <a href="{{ action('PublicController@showProducts', $child) }}">{{$child->name}}</a>
                         @endforeach
                     </div>
@@ -129,30 +131,17 @@
 <footer>
     <div  class="row">
         <div class="two columns">&nbsp;</div>
-        <div class="two columns">
-            <menu>
-                <menuitem><a href="">Chocola</a></menuitem>
-                <menuitem><a href="">Wereld snoep</a></menuitem>
-            </menu>
-        </div>
-        <div class="two columns">
-            <menu>
-                <menuitem><a href="">Chocola</a></menuitem>
-                <menuitem><a href="">Wereld snoep</a></menuitem>
-            </menu>
-        </div>
-        <div class="two columns">
-            <menu>
-                <menuitem><a href="">Chocola</a></menuitem>
-                <menuitem><a href="">Wereld snoep</a></menuitem>
-            </menu>
-        </div>
-        <div class="two columns">
-            <menu>
-                <menuitem><a href="">Chocola</a></menuitem>
-                <menuitem><a href="">Wereld snoep</a></menuitem>
-            </menu>
-        </div>
+                &nbsp;
+            @foreach(\App\Category::where('child_from', null)->get() as $parent)
+                <div class="two columns">
+                <menu>
+                    <menuitem><a href="{{ action('PublicController@showProducts', $parent->id) }}" class="parentbottom">{{$parent->name}}</a></menuitem>
+                        @foreach($parent->Children as $child)
+                            <menuitem><a href="{{ action('PublicController@showProducts', $child) }}">{{$child->name}}</a></menuitem>
+                        @endforeach
+                </menu>
+                </div>
+            @endforeach
         <div class="two columns">&nbsp;</div>
     </div>
     <div class="row" id="copyright">

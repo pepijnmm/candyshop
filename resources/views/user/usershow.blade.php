@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.usertemplate')
 
 @section('content')
 <div class="row" id="product">

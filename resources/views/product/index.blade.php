@@ -10,10 +10,10 @@
   </tr>
   @foreach ($products as $product)
 	<tr>
-    <td><a href="{{action('ProductController@edit',$product->id)}}">{{$product->name}}</a></td>
-    <td><a href="{{action('ProductController@edit',$product->id)}}">€{{$product->price}}</a></td>
-	<td><a href="{{action('ProductController@edit',$product->id)}}">{{$product->storage}}</a></td>
-	<td><a href="{{action('ProductController@edit',$product->id)}}">{{$product->discount}}</a></td>
+    <td><a href="{{action('ProductController@showadmin',$product->id)}}">{{$product->name}}</a></td>
+    <td><a href="{{action('ProductController@showadmin',$product->id)}}">€{{$product->price}}</a></td>
+	<td><a href="{{action('ProductController@showadmin',$product->id)}}">{{$product->storage}}</a></td>
+	<td><a href="{{action('ProductController@showadmin',$product->id)}}">{{$product->discount}}</a></td>
   </tr>
   @endforeach
  </table>

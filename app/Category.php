@@ -34,15 +34,15 @@ class Category extends Model
      */
     protected $hidden = [
     ];
-	public function children()
+	public function Children()
     {
         return $this->hasMany('App\Category','child_from','id');
     }
-	public function parent()
+	public function Parent()
     {
         return $this->belongsTo('App\Category','child_from','id');
     }
-	public function products()
+	public function Products()
     {
         return $this->belongsToMany('App\Product');
     }

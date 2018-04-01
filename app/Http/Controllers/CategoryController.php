@@ -90,6 +90,12 @@ class CategoryController extends Controller
             if ($validator->fails()) {
                 return redirect()->action('CategoryController@edit',$id)->withInput()->withErrors($validator);
             }
+            if(!empty($request->child_from)){
+                if(Category::where(['child_from' => $id])->exists() || Category::find($request->child_from)->child_from>0){
+                    Session::flash('alert-warning', 'Parent kan niet ook een kind zijn.');
+                    return redirect()->action('CategoryController@edit',$id)->withInput();
+                }
+            }
             if($pictureupload){
                 $ExtraController = new ExtraController;
                 $request->merge(["image_location" => $ExtraController->fileUpload($request)]);

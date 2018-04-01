@@ -30,6 +30,10 @@ Route::get('about', 'PublicController@about');
 Route::resource('artikelen','ProductController',['only'=>['show']]);
 Route::group(['middleware' => 'GuestCheck'], function () {
 $this->post('logout', 'Auth\LoginController@logout');
+//user settings
+Route::get('user', function () {
+     return redirect('user/show');
+});
 Route::get('user/edit', 'UserController@useredit');
 Route::post('user/edit', 'UserController@userupdate');
 Route::get('user/show', 'UserController@showcurrent');
@@ -39,7 +43,9 @@ Route::put('user/password', 'UserController@storepasswordchange');
 
 });
 Route::group(['middleware' => 'AdminCheck'], function () {
-	Route::get('admin', 'ProductController@index');
+	Route::get('admin', function () {
+     return redirect('admin/artikelen');
+});
 	Route::get('admin/gallerie', 'ExtraController@gallery');
 	Route::put('admin/users/{id}/password','UserController@passwordreset');
 	Route::resource('admin/users','UserController');
@@ -49,23 +55,16 @@ Route::group(['middleware' => 'AdminCheck'], function () {
 });
 
 //Orders
-Route::get('cart', 'OrderController@cart')->name('cart');
-Route::get('remove/{order}/{product}', 'OrderController@remove');
-Route::get('add/{product}/{amount}', 'OrderController@add');
-Route::resource('orders','OrderController',['only'=>['index', 'show']]);
+Route::get('bestelling/cart', 'OrderController@cart');
+Route::get('bestelling/checkout', 'OrderController@checkout');
+Route::put('bestelling/checkout', 'OrderController@checkoutstore');
+Route::resource('bestelling','OrderController',['only'=>['index', 'show']]);
+Route::post('artikelen/{product}/remove', 'OrderController@remove');
+Route::post('artikelen/{product}/add', 'OrderController@add');
+
+//Categories
+Route::get('artikelen/categorie/{category}', 'PublicController@showProducts');
+Route::get('artikelen/categorie/{category}/zoeken', 'PublicController@search');
 Route::any('/{any}', function ($any) {
      return redirect('/');
 });
-
-//Categories
-Route::get('showProducts/{category}', 'PublicController@showProducts');
-
-//Navigation
-foreach(\App\NavigationItem::where('child_from', null)->get() as $parent)
-{
-    $this->get($parent->route, $parent->action);
-    foreach(\App\NavigationItem::where('child_from', $parent->id)->get() as $child)
-    {
-        $this->get($child->route, $child->action);
-    }
-}

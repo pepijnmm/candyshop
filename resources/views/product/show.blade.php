@@ -15,7 +15,7 @@
 			<H2 id="producttitle">{{$product->name}}</H2>
 			<hr>
 		<div class="row">
-
+		<form action="{{ action('OrderController@add',$product->id)   }}" method="POST">
 			<div class="six columns">
 				<img src="/images/{{$product->image_location}}" alt="product plaatje"/>
 			</div>
@@ -33,16 +33,15 @@
 						<p>{{$product->weight}}</p>
 						<p>€{{$product->price}} </p>
 						@if($product->discount>0)<p>met {{$product->discount}}% korting: €{{round($product->price-( $product->price/100*$product->discount),2)  }}</p>@endif
-						<form method="get">
 						<input type="number" name="amount" id="amount" min="0" max="{{$product->storage}}" value="{{(empty(old('aantalproducten')))?(($product->storage>0)?1:0):old('aantalproducten')}}">
-						</form>
 					</div>
-					<a href="{{ action('OrderController@add', [$product, '1']) }}" id="buybutton" class="button">Kopen</a>
+					<input class="button-primary" type="submit" value="Kopen">
 				</form>
 			</div>
 			<div class="twelf columns" id="productbeschrijving">
 			{{$product->description}}
 			</div>
+			</form>
 		</div>
 	</div>
 </div>

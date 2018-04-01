@@ -1,4 +1,4 @@
-@extends('layouts.usertemplate')
+@extends('layouts.default')
 
 @section('content')
     <table>
@@ -16,10 +16,13 @@
                 <td><a>{{$product->storage}}</a></td>
                 <td><a>{{$product->discount}}</a></td>
                 <td><a>{{$product->pivot->amount}}</a></td>
-                @if($order->status == 'active')
-                    <td><a href="{{ action('OrderController@remove', [$order, $product]) }}"><i class="fas fa-trash"></i></a></td>
-                @endif
+                    <td><a href="#" onclick="event.preventDefault(); document.getElementById('send-form').submit();"><i class="fas fa-trash"></i></a></td>
+                    <form id="send-form" action="{{ action('OrderController@remove', [$product]) }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
             </tr>
         @endforeach
     </table>
+    <h4>Totaal: {{$order->total_price}}</h4>
+    <a href="{{action('OrderController@checkout')}}" class="button">Betalen</a>
 @endsection

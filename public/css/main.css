@@ -121,6 +121,7 @@ footer menuitem{
     padding-top: 30px;
     position: absolute;
     right: 10px;
+    z-index:1;
 }
 #usermenu ul{
     background: lightgray;
@@ -131,6 +132,17 @@ footer menuitem{
     
     border:1px solid black;
     border-radius: 0 0 20px 20px;
+}
+.parentbottom{
+    font-size:20px;
+}
+.categoryproductpicture{
+    height:60px;
+    width:auto;
+}
+.categorypicture{
+    height:200px;
+    width:auto;
 }
 #usermenu ul li:not(:nth-child(1)){
     border-top:1px solid black;

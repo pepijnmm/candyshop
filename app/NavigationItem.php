@@ -24,11 +24,11 @@ class NavigationItem extends Model
     protected $hidden = [
     ];
 
-    public function children()
+    public function Children()
     {
         return $this->hasMany('App\NavigationItem');
     }
-    public function parent()
+    public function Parent()
     {
         return $this->belongsTo('App\NavigationItem');
     }

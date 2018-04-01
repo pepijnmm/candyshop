@@ -17,6 +17,7 @@ class CreateProductsOnOrdersTable extends Migration
             $table->integer('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('amount');
+            $table->primary(['product_id', 'order_id']);
         });
     }
 

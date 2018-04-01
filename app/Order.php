@@ -23,15 +23,15 @@ class Order extends Model
      */
     protected $hidden = [
     ];
-	public function user()
+	public function User()
     {
         return $this->belongsTo('App\User');
     }
-	public function address()
+	public function Address()
     {
         return $this->belongsTo('App\Address');
     }
-	public function products()
+	public function Products()
     {
         return $this->belongsToMany('App\Product')->withPivot('amount');
     }

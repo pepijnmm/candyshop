@@ -38,8 +38,8 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Category');
     }
-    public function orders()
+    public function Orders()
     {
-        return $this->belongsToMany('App\Order');
+        return $this->belongsToMany('App\Order')->withPivot('amount');
     }
 }
