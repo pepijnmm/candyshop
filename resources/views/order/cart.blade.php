@@ -15,7 +15,11 @@
                 <td><a>€{{$product->price}}</a></td>
                 <td><a>{{$product->storage}}</a></td>
                 <td><a>{{$product->discount}}</a></td>
-                <td><a>{{$product->pivot->amount}}</a></td>
+                <td>
+                    <a href="{{ action('OrderController@removeamount', [$order, $product]) }}"><i class="fas fa-minus"></i></a>
+                    <a>{{$product->pivot->amount}}</a>
+                    <a href="{{ action('OrderController@addamount', [$order, $product]) }}"><i class="fas fa-plus"></i></a>
+                </td>
                     <td><a href="#" onclick="event.preventDefault(); document.getElementById('send-form').submit();"><i class="fas fa-trash"></i></a></td>
                     <form id="send-form" action="{{ action('OrderController@remove', [$product]) }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
@@ -23,6 +27,6 @@
             </tr>
         @endforeach
     </table>
-    <h4>Totaal: {{$order->total_price}}</h4>
+    <h4>Totaal: €{{round($order->total_price, 2)}}</h4>
     <a href="{{action('OrderController@checkout')}}" class="button">Betalen</a>
 @endsection

@@ -59,8 +59,10 @@ Route::get('bestelling/cart', 'OrderController@cart');
 Route::get('bestelling/checkout', 'OrderController@checkout');
 Route::put('bestelling/checkout', 'OrderController@checkoutstore');
 Route::resource('bestelling','OrderController',['only'=>['index', 'show']]);
-Route::post('artikelen/{product}/remove', 'OrderController@remove');
 Route::post('artikelen/{product}/add', 'OrderController@add');
+Route::post('artikelen/{product}/remove', 'OrderController@remove');
+Route::get('artikelen/{order}/{product}/addamount', 'OrderController@addamount');
+Route::get('artikelen/{order}/{product}/removeamount', 'OrderController@removeamount');
 
 //Categories
 Route::get('artikelen/categorie/{category}', 'PublicController@showProducts');
