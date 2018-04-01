@@ -10,7 +10,7 @@
         <p>Sorry er zijn geen producten in deze categorie</p>
     @else<table>
         <tr>
-            <th>picture</th>
+            <th></th>
             <th>Naam</th>
             <th>Prijs</th>
             <th>Korting</th>
