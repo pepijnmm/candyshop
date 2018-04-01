@@ -27,6 +27,15 @@ Route::post('register', 'UserController@userstore');
 
 Route::get('/', 'PublicController@index');
 Route::get('about', 'PublicController@about');
+//Orders
+Route::get('bestelling/cart', 'OrderController@cart');
+Route::get('bestelling/checkout', 'OrderController@checkout');
+Route::put('bestelling/checkout', 'OrderController@checkoutstore');
+Route::post('bestelling/{product}/add', 'OrderController@add');
+Route::post('bestelling/{product}/remove', 'OrderController@remove');
+Route::get('bestelling/{order}/{product}/addamount', 'OrderController@addamount');
+Route::get('bestelling/{order}/{product}/removeamount', 'OrderController@removeamount');
+
 Route::resource('artikelen','ProductController',['only'=>['show']]);
 Route::group(['middleware' => 'GuestCheck'], function () {
 $this->post('logout', 'Auth\LoginController@logout');
@@ -34,11 +43,13 @@ $this->post('logout', 'Auth\LoginController@logout');
 Route::get('user', function () {
      return redirect('user/show');
 });
+Route::resource('user/adres','AddressController');
 Route::get('user/edit', 'UserController@useredit');
 Route::post('user/edit', 'UserController@userupdate');
 Route::get('user/show', 'UserController@showcurrent');
 Route::get('user/password', 'UserController@passwordchange');
 Route::put('user/password', 'UserController@storepasswordchange');
+Route::resource('bestelling','OrderController',['only'=>['index', 'show']]);
 
 
 });
@@ -53,17 +64,6 @@ Route::group(['middleware' => 'AdminCheck'], function () {
 	Route::resource('admin/artikelen','ProductController',['except'=>['show']]);
 	Route::get('admin/artikelen/{id}', 'ProductController@showadmin');
 });
-
-//Orders
-Route::get('bestelling/cart', 'OrderController@cart');
-Route::get('bestelling/checkout', 'OrderController@checkout');
-Route::put('bestelling/checkout', 'OrderController@checkoutstore');
-Route::resource('bestelling','OrderController',['only'=>['index', 'show']]);
-Route::post('artikelen/{product}/add', 'OrderController@add');
-Route::post('artikelen/{product}/remove', 'OrderController@remove');
-Route::get('artikelen/{order}/{product}/addamount', 'OrderController@addamount');
-Route::get('artikelen/{order}/{product}/removeamount', 'OrderController@removeamount');
-
 //Categories
 Route::get('artikelen/categorie/{category}', 'PublicController@showProducts');
 Route::get('artikelen/categorie/{category}/zoeken', 'PublicController@search');

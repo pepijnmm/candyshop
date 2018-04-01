@@ -37,11 +37,16 @@
                     @else
                     <div id="usermenu">
                         <ul>
-                            <li><a href="/" >webshop</a></li>
+                            <li><a href="{{action('UserController@showcurrent')}}" >account</a></li>
+                            <li><a href="{{action('OrderController@index')}}" >orders</a></li>
                             <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
                             <form id="logout-form" action="{{ action('Auth\LoginController@logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
+                            <li><a href="/" >webshop</a></li>
+                            @if(Auth::user()->role == 1)
+                                <li><a href="/admin" >adminpanel</a></li>
+                            @endif
                         </ul>
                     </div>
                     @endif
@@ -73,6 +78,18 @@
                 <menu class="childmenu">
                     <menuitem>
                     <a href="{{action('OrderController@index')}}">Alle bestellingen</a>
+                    </menuitem>
+
+                </menu>
+            </menuitem>
+            <menuitem class="parentmenuitem">
+                Adress instellingen
+                <menu class="childmenu">
+                    <menuitem>
+                    <a href="{{action('AddressController@index')}}">Alle addressen</a>
+                    </menuitem>
+                    <menuitem>
+                    <a href="{{action('AddressController@create')}}">Toevoegen</a>
                     </menuitem>
 
                 </menu>

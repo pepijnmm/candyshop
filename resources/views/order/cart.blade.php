@@ -11,10 +11,10 @@
         </tr>
         @foreach ($order->products as $product)
             <tr>
-                <td><a>{{$product->name}}</a></td>
-                <td><a>€{{$product->price}}</a></td>
-                <td><a>{{$product->storage}}</a></td>
-                <td><a>{{$product->discount}}</a></td>
+                <td><a href="{{ action('ProductController@show', $product->id) }}">{{$product->name}}</a></td>
+                <td><a href="{{ action('ProductController@show', $product->id) }}">€{{$product->price}}</a></td>
+                <td><a href="{{ action('ProductController@show', $product->id) }}">{{$product->storage}}</a></td>
+                <td><a href="{{ action('ProductController@show', $product->id) }}">{{$product->discount}}</a></td>
                 <td>
                     <a href="{{ action('OrderController@removeamount', [$order, $product]) }}"><i class="fas fa-minus"></i></a>
                     <a>{{$product->pivot->amount}}</a>

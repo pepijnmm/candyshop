@@ -14,6 +14,7 @@
             <th>Naam</th>
             <th>Prijs</th>
             <th>Korting</th>
+            <th>knop</th>
         </tr>
         @foreach ($products as $product)
             <tr>
@@ -21,6 +22,11 @@
                 <td><a href="{{ action('ProductController@show', $product) }}">{{$product->name}}</a></td>
                 <td><a href="{{ action('ProductController@show', $product) }}">€{{$product->price}}</a></td>
                 <td><a href="{{ action('ProductController@show', $product) }}">{{$product->discount}}%</a></td>
+                <td><a href="#" class="button" onclick="event.preventDefault(); document.getElementById('buy-product{{$product->id}}').submit();" >kopen</a></td>
+                <form id="buy-product{{(empty($product))?'':$product->id}}" action="{{ action('OrderController@add',((empty($product))?0:$product->id)) }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                    <input type="number" name="amount" value="1" style="display: none;">
+                </form>
             </tr>
         @endforeach
     </table>

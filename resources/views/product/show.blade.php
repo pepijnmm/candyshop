@@ -20,7 +20,6 @@
 				<img src="/images/{{$product->image_location}}" alt="product plaatje"/>
 			</div>
 			<div class="six columns" id="productinfo">
-				<form action="{{ action('ProductController@store')   }}" method="POST">
 				{{ method_field('POST') }}
 				{{ csrf_field() }}
 					<div id="leftinfo">
@@ -36,7 +35,6 @@
 						<input type="number" name="amount" id="amount" min="0" max="{{$product->storage}}" value="{{(empty(old('aantalproducten')))?(($product->storage>0)?1:0):old('aantalproducten')}}">
 					</div>
 					<input class="button-primary" type="submit" value="Kopen">
-				</form>
 			</div>
 			<div class="twelf columns" id="productbeschrijving">
 			{{$product->description}}

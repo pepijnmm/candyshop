@@ -29,32 +29,35 @@ class PublicController extends Controller
     }
     public function search($category){
         $products = [];
-            $good=[];
-        if($category > 0){
-            $category = Category::find($category);
-            
-            foreach($category->Products as $productinfo){
-                array_push($products,$productinfo->id);
+        $good=[];
+        if(!empty($_GET['search'])){
+            if($category > 0){
+                $category = Category::find($category);
+                
+                foreach($category->Products as $productinfo){
+                    array_push($products,$productinfo->id);
+                }
+                foreach($category->Children as $childeren){
+                    foreach($childeren->Products as $productinf){
+                        array_push($products,$productinf->id);
+                    }
+                }
+                $products = array_unique($products);
             }
-            foreach($category->Children as $childeren){
-                foreach($childeren->Products as $productinf){
-                    array_push($products,$productinf->id);
+            else{
+                foreach(Product::all() as $productinfo){
+                    array_push($products,$productinfo->id);
                 }
             }
-            $products = array_unique($products);
-        }
-        else{
-            foreach(Product::all() as $productinfo){
-                array_push($products,$productinfo->id);
+            foreach($products as $product){
+                $oneproduct = Product::find($product);
+                if(strpos($oneproduct->name,$_GET['search'])!==false){
+                    array_push($good,$oneproduct->id);
+                }
+                else{unset($products[array_search($product,$products)]);}
             }
+            return view('public.showSearch', ['products' => Product::findMany($good),'category' => $category]);
         }
-        foreach($products as $product){
-            $oneproduct = Product::find($product);
-            if(strpos($oneproduct->name,$_GET['search'])!==false){
-                array_push($good,$oneproduct->id);
-            }
-            else{unset($products[array_search($product,$products)]);}
-        }
-        return view('public.showSearch', ['products' => Product::findMany($good),'category' => $category]);
+        return redirect()->back();
     }
 }

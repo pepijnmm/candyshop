@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('AdminCheck');
+    }
     public function index()
     {
         $orders = Order::where([['user_id', Auth::id()], ['status', '<>', 'active' ], ['status', '<>', 'received' ]])->get();
@@ -96,7 +100,15 @@ class OrderController extends Controller
             else {
                 $order->products()->updateExistingPivot($id, ['amount' => $order->products()->find($product->id)->pivot->amount + $request->amount]);
             }
-            $order->total_price += $product->price*((100-$product->discount)/100)*$request->amount;
+            $order->total_price = 0;
+            foreach($order->products()->get() as $product){
+                if($product->discount){
+                    $order->total_price += round(($product->price-($product->price/100*$product->discount))*$product->pivot->amount,2);
+                }
+                else{
+                    $order->total_price +=  $product->price*$product->pivot->amount; 
+                }
+           }
             $order->save();
             Session::flash('alert-success', 'product toegevoegd');
             return redirect()->action('OrderController@cart');
@@ -114,8 +126,18 @@ class OrderController extends Controller
         }
         $product = Product::find($product);
         if (!empty($product)) {
-            $order->total_price -= $product->price*((100-$product->discount)/100)*$order->products()->find($product->id)->pivot->amount;
             $order->products()->detach($product->id);
+            $order->total_price = 0;
+            foreach($order->products()->get() as $product){
+                if($product->discount){
+                    $order->total_price += round(($product->price-($product->price/100*$product->discount))*$product->pivot->amount,2);
+                }
+                else{
+                    $order->total_price +=  $product->price*$product->pivot->amount; 
+                }
+           }
+
+            
             $order->save();
             Session::flash('alert-success', 'product verwijderd');
             return redirect()->action('OrderController@cart');
@@ -130,7 +152,16 @@ class OrderController extends Controller
         if (!empty($product)) {
             $product->pivot->amount += 1;
             $product->pivot->save();
-            $order->total_price += $product->price*((100-$product->discount)/100);
+            $order->total_price = 0;
+            foreach($order->products()->get() as $product){
+                if($product->discount){
+                    $order->total_price += round(($product->price-($product->price/100*$product->discount))*$product->pivot->amount,2);
+                }
+                else{
+                    $order->total_price +=  $product->price*$product->pivot->amount; 
+                }
+           }
+
             $order->save();
             return redirect()->action('OrderController@cart');
         }
@@ -145,7 +176,16 @@ class OrderController extends Controller
             if ($product->pivot->amount > 1) {
                 $product->pivot->amount -= 1;
                 $product->pivot->save();
-                $order->total_price -= $product->price*((100-$product->discount)/100);
+                $order->total_price = 0;
+                foreach($order->products()->get() as $product){
+                    if($product->discount){
+                        $order->total_price += round(($product->price-($product->price/100*$product->discount))*$product->pivot->amount,2);
+                    }
+                    else{
+                        $order->total_price +=  $product->price*$product->pivot->amount; 
+                    }
+               }
+
                 $order->save();
                 return redirect()->action('OrderController@cart');
             }
@@ -161,13 +201,15 @@ class OrderController extends Controller
         $product = Product::find($product);
         if (!empty($order) &&!empty($product)) {
             $order->products()->detach($product->id);
-            if($product->discount){
-                $order->total_price -= $product->price-($product->price/100*$product->discount)*$product->pivot->amount;
-            }
-            else{
-                $order->total_price -=  $product->price*$product->pivot->amount; 
-            }
-            $order->total_price -= $product->price;
+            $order->total_price = 0;
+            foreach($order->products()->get() as $product){
+                if($product->discount){
+                    $order->total_price += round(($product->price-($product->price/100*$product->discount))*$product->pivot->amount,2);
+                }
+                else{
+                    $order->total_price +=  $product->price*$product->pivot->amount; 
+                }
+           }
 
             $order->save();
             Session::flash('alert-success', 'product verwijderd');

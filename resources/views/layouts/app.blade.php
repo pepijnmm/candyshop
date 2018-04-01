@@ -37,11 +37,13 @@
                     @else
                     <div id="usermenu">
                         <ul>
-                            <li><a href="/" >webshop</a></li>
+                            <li><a href="{{action('UserController@showcurrent')}}" >account</a></li>
+                            <li><a href="{{action('OrderController@index')}}" >orders</a></li>
                             <li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >uitloggen</a></li>
                             <form id="logout-form" action="{{ action('Auth\LoginController@logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
+                            <li><a href="/" >webshop</a></li>
                         </ul>
                     </div>
                     @endif

@@ -12,7 +12,6 @@
             <th>Korting</th>
             <th>Aantal</th>
         </tr>
-        <p>Waar moet het worden bezorgt</p>
         @foreach ($order->products as $product)
             <tr>
                 <td><a>{{$product->name}}</a></td>
@@ -24,7 +23,10 @@
         @endforeach
     </table>
     <div class="row">
-        <div class="six columns"><select required name="adress">
+        <div class="six columns">
+        <p>Waar moet het worden bezorgt</p>
+        <select required name="adress">
+
                 @foreach ($addresses as $address)
                     <option value="{{$address->id}}">{{$address->street_name}} {{$address->house_number}} {{$address->zip_code}}</option>
                 @endforeach
